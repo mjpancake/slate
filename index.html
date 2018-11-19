@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>松饼人物编辑器 API 文档</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;lua&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="lua">lua</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,282 +219,2043 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#5060421d15" class="toc-h1 toc-link" data-title="概览">概览</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#d4c6f6b448" class="toc-h1 toc-link" data-title="回调函数">回调函数</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#28f885d964" class="toc-h2 toc-link" data-title="检查配牌">检查配牌</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#fd8bf47d14" class="toc-h2 toc-link" data-title="摸牌前搞事情">摸牌前搞事情</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#8a5ba50a3c" class="toc-h2 toc-link" data-title="发生事件后做处理">发生事件后做处理</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#lua" class="toc-h1 toc-link" data-title="Lua 标准库">Lua 标准库</a>
+          </li>
+          <li>
+            <a href="#t34" class="toc-h1 toc-link" data-title="麻将牌 T34">麻将牌 <code>T34</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#69210591e9" class="toc-h2 toc-link" data-title="通过数值与花色构造">通过数值与花色构造</a>
+                  </li>
+                  <li>
+                    <a href="#id-34" class="toc-h2 toc-link" data-title="通过 ID-34 构造">通过 ID-34 构造</a>
+                  </li>
+                  <li>
+                    <a href="#id34-id-34" class="toc-h2 toc-link" data-title="id34 获取 ID-34"><code>id34</code> 获取 ID-34</a>
+                  </li>
+                  <li>
+                    <a href="#fe8f39dede" class="toc-h2 toc-link" data-title="获取花色">获取花色</a>
+                  </li>
+                  <li>
+                    <a href="#8d0dd529f0" class="toc-h2 toc-link" data-title="获取数值">获取数值</a>
+                  </li>
+                  <li>
+                    <a href="#cc4e0e7b88" class="toc-h2 toc-link" data-title="获取字符串表示">获取字符串表示</a>
+                  </li>
+                  <li>
+                    <a href="#2ae251f1f7" class="toc-h2 toc-link" data-title="役牌判断">役牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#a453f8b561" class="toc-h2 toc-link" data-title="相等判断">相等判断</a>
+                  </li>
+                  <li>
+                    <a href="#34" class="toc-h2 toc-link" data-title="遍历 34 种牌">遍历 34 种牌</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#t37" class="toc-h1 toc-link" data-title="麻将牌 T37">麻将牌 <code>T37</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8cfb0a026a" class="toc-h2 toc-link" data-title="通过字符串构造">通过字符串构造</a>
+                  </li>
+                  <li>
+                    <a href="#id-34" class="toc-h2 toc-link" data-title="通过 ID-34 构造">通过 ID-34 构造</a>
+                  </li>
+                  <li>
+                    <a href="#8255098554" class="toc-h2 toc-link" data-title="赤牌判断">赤牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#9df238ed57" class="toc-h2 toc-link" data-title="获取对应的字符串">获取对应的字符串</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#who" class="toc-h1 toc-link" data-title="身价标识 Who">身价标识 <code>Who</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#a453f8b561" class="toc-h2 toc-link" data-title="相等判断">相等判断</a>
+                  </li>
+                  <li>
+                    <a href="#42267db625" class="toc-h2 toc-link" data-title="获取下家">获取下家</a>
+                  </li>
+                  <li>
+                    <a href="#83d6cd4bb1" class="toc-h2 toc-link" data-title="获取对家">获取对家</a>
+                  </li>
+                  <li>
+                    <a href="#0a3865c4fd" class="toc-h2 toc-link" data-title="获取上家">获取上家</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#m37" class="toc-h1 toc-link" data-title="副露与暗杠 M37">副露与暗杠 <code>M37</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#bark" class="toc-h2 toc-link" data-title="获取 bark 类型">获取 bark 类型</a>
+                  </li>
+                  <li>
+                    <a href="#bark-2" class="toc-h2 toc-link" data-title="获取 bark 中的一张牌">获取 bark 中的一张牌</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#mount" class="toc-h1 toc-link" data-title="牌山 Mount">牌山 <code>Mount</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#271b603022" class="toc-h2 toc-link" data-title="获取残枚">获取残枚</a>
+                  </li>
+                  <li>
+                    <a href="#586c50ebb4" class="toc-h2 toc-link" data-title="获取岭上牌残枚">获取岭上牌残枚</a>
+                  </li>
+                  <li>
+                    <a href="#a" class="toc-h2 toc-link" data-title="查看 A 区中某牌个数">查看 A 区中某牌个数</a>
+                  </li>
+                  <li>
+                    <a href="#002bc1c85c" class="toc-h2 toc-link" data-title="查看宝牌指示牌">查看宝牌指示牌</a>
+                  </li>
+                  <li>
+                    <a href="#f0f0dc15d4" class="toc-h2 toc-link" data-title="查看里宝牌指示牌">查看里宝牌指示牌</a>
+                  </li>
+                  <li>
+                    <a href="#a-2" class="toc-h2 toc-link" data-title="改变 A 区中某牌存在感">改变 A 区中某牌存在感</a>
+                  </li>
+                  <li>
+                    <a href="#b" class="toc-h2 toc-link" data-title="改变 B 区中某牌存在感">改变 B 区中某牌存在感</a>
+                  </li>
+                  <li>
+                    <a href="#eaf94ee809" class="toc-h2 toc-link" data-title="改变某牌存在感（一般形式）">改变某牌存在感（一般形式）</a>
+                  </li>
+                  <li>
+                    <a href="#b-2" class="toc-h2 toc-link" data-title="放入 B 区">放入 B 区</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#tilecount" class="toc-h1 toc-link" data-title="麻将牌多集 Tilecount">麻将牌多集 <code>Tilecount</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#37802b1dfc" class="toc-h2 toc-link" data-title="计数">计数</a>
+                  </li>
+                  <li>
+                    <a href="#5d6254dc3e" class="toc-h2 toc-link" data-title="花色计数">花色计数</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#hand" class="toc-h1 toc-link" data-title="手牌 Hand">手牌 <code>Hand</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#dce6041f8a" class="toc-h2 toc-link" data-title="获取纯手牌">获取纯手牌</a>
+                  </li>
+                  <li>
+                    <a href="#barks" class="toc-h2 toc-link" data-title="获取 barks">获取 barks</a>
+                  </li>
+                  <li>
+                    <a href="#37802b1dfc" class="toc-h2 toc-link" data-title="计数">计数</a>
+                  </li>
+                  <li>
+                    <a href="#5" class="toc-h2 toc-link" data-title="赤 5 计数">赤 5 计数</a>
+                  </li>
+                  <li>
+                    <a href="#84e5c3c23b" class="toc-h2 toc-link" data-title="听牌判断">听牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#58aa1a06bc" class="toc-h2 toc-link" data-title="计算向听数">计算向听数</a>
+                  </li>
+                  <li>
+                    <a href="#74131892bf" class="toc-h2 toc-link" data-title="计算四面子向听数">计算四面子向听数</a>
+                  </li>
+                  <li>
+                    <a href="#274eb1c622" class="toc-h2 toc-link" data-title="计算七对子向听数">计算七对子向听数</a>
+                  </li>
+                  <li>
+                    <a href="#2c5f2ce4f2" class="toc-h2 toc-link" data-title="计算国标七对子向听数">计算国标七对子向听数</a>
+                  </li>
+                  <li>
+                    <a href="#6745431417" class="toc-h2 toc-link" data-title="计算国士向听数">计算国士向听数</a>
+                  </li>
+                  <li>
+                    <a href="#6bf29cdbaa" class="toc-h2 toc-link" data-title="计算一类有效牌">计算一类有效牌</a>
+                  </li>
+                  <li>
+                    <a href="#c5b48a5756" class="toc-h2 toc-link" data-title="计算四面子一类有效牌">计算四面子一类有效牌</a>
+                  </li>
+                  <li>
+                    <a href="#ed53d04308" class="toc-h2 toc-link" data-title="门前清判断">门前清判断</a>
+                  </li>
+                  <li>
+                    <a href="#ef9f05431e" class="toc-h2 toc-link" data-title="宝牌计数">宝牌计数</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#game" class="toc-h1 toc-link" data-title="场况 Game">场况 <code>Game</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#bfd9e66b23" class="toc-h2 toc-link" data-title="获取某家手牌">获取某家手牌</a>
+                  </li>
+                  <li>
+                    <a href="#dab3b5df05" class="toc-h2 toc-link" data-title="获取局数">获取局数</a>
+                  </li>
+                  <li>
+                    <a href="#f24977deda" class="toc-h2 toc-link" data-title="获取本场数">获取本场数</a>
+                  </li>
+                  <li>
+                    <a href="#41f5153c68" class="toc-h2 toc-link" data-title="获取庄家">获取庄家</a>
+                  </li>
+                  <li>
+                    <a href="#5bccff2cd5" class="toc-h2 toc-link" data-title="获取某家自风">获取某家自风</a>
+                  </li>
+                  <li>
+                    <a href="#51b6e0ba39" class="toc-h2 toc-link" data-title="获取场风">获取场风</a>
+                  </li>
+                  <li>
+                    <a href="#09ccca7203" class="toc-h2 toc-link" data-title="获取某家牌河">获取某家牌河</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#game-event" class="toc-h1 toc-link" data-title="Game Event 表结构">Game Event 表结构</a>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://mjpancake.github.io/'>松饼社区主站</a></li>
+            <li>本文档由 <a href='https://github.com/lord/slate'>Slate</a> 烹制而成</li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='5060421d15'>概览</h1>
+<p>欢迎来到松饼人物编辑器 API 文档！
+通过松饼人物编辑器，你可以制作原创角色，发明原创技能，并分享到社区。</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>人物的技能由单个 Lua 脚本文件进行定义。
+如果没有接触过 Lua，可食用
+<a href="https://mjpancake.github.io/">主站</a>
+上的的零基础教程。</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>本文档目前比较简略，我们还在持续添加更多的细节说明与样例。
+遇到任何问题，可在企鹅群提问。</p>
+<h1 id='d4c6f6b448'>回调函数</h1>
+<p>在 Lua 脚本文件中，以特定的名称定义函数，即可在特定的时机插入自己的逻辑。
+这些函数都不需要参数，
+必要的数据可从特定的全局变量中获取。</p>
+
+<p>(TODO global var &#39;self&#39;)</p>
+<h2 id='28f885d964'>检查配牌</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>例：要求配牌向听数小于等于 1：</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">checkinit</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">who</span> <span class="o">~=</span> <span class="n">self</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kc">true</span>
+  <span class="k">end</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+  <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">step</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+<span class="k">end</span>
+</code></pre><h3 id='7f7f9e027f'>函数名</h3>
+<p><code>checkinit</code></p>
+<h3 id='4cc58268ed'>可用全局变量</h3>
+<table><thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>game</code></td>
+<td>userdata <code>Game</code></td>
+<td>当前牌桌数据</td>
+</tr>
+<tr>
+<td><code>init</code></td>
+<td>userdata <code>Hand</code></td>
+<td>待测配牌，无论亲子都是 13 张</td>
+</tr>
+<tr>
+<td><code>who</code></td>
+<td>userdata <code>Who</code></td>
+<td>待测配牌所有者</td>
+</tr>
+<tr>
+<td><code>iter</code></td>
+<td>number</td>
+<td>检测轮数，从0 开始递增，最大 999</td>
+</tr>
+</tbody></table>
+<h3 id='f565dac200'>具体用法</h3>
+<p>检查配牌，当且仅当满意配牌时返回<code>true</code>
+(TODO)</p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<code>checkinit</code>必须返回一个 boolean 类型的值
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h2 id='fd8bf47d14'>摸牌前搞事情</h2><h3 id='7f7f9e027f-2'>函数名</h3>
+<p><code>ondraw</code></p>
+<h3 id='4cc58268ed-2'>可用全局变量</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><code>game</code></td>
+<td>userdata <code>Game</code></td>
+<td>当前牌桌数据</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td><code>mount</code></td>
+<td>userdata <code>Mount</code></td>
+<td>牌山</td>
+</tr>
+<tr>
+<td><code>who</code></td>
+<td>userdata <code>Who</code></td>
+<td>将要摸牌的人</td>
+</tr>
+<tr>
+<td><code>rinshan</code></td>
+<td>boolean</td>
+<td>下一张摸牌是否为岭上牌</td>
+</tr>
+</tbody></table>
+<h3 id='f565dac200-2'>具体用法</h3>
+<p>摸牌前被调用，可干涉牌山
+(TODO)</p>
+<h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-3'>函数名</h3>
+<p><code>ongameevent</code></p>
+<h3 id='4cc58268ed-3'>可用全局变量</h3>
+<table><thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>game</code></td>
+<td>userdata <code>Game</code></td>
+<td>当前牌桌数据</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>table</td>
+<td>发生的事件</td>
+</tr>
+</tbody></table>
+<h3 id='f565dac200-3'>具体用法</h3>
+<p>发生某些事件前调用，不可直接干涉牌山
+(TODO)</p>
+<h1 id='lua'>Lua 标准库</h1>
+<p>为了防止世界被破坏，
+松饼中只能使用一部分的 Lua 标准库与内建函数。</p>
+
+<p>能用的部分：</p>
+
+<ul>
+<li><code>table</code>中的所有函数</li>
+<li><code>string</code>中的所有函数</li>
+<li><code>math</code>中除去<code>math.random</code>和<code>math.randomseed</code>以外的所有函数</li>
+<li><code>pairs</code>, <code>ipairs</code></li>
+<li><code>print</code></li>
+<li><code>tostring</code></li>
+</ul>
+
+<p>将来可能会放宽限制，支持更多的标准库成员。</p>
+<h1 id='t34'>麻将牌 <code>T34</code></h1>
+<p><code>T34</code>代表一张不区分赤宝牌的麻将牌。</p>
+<h2 id='69210591e9'>通过数值与花色构造</h2>
+<p><code>local &lt;t&gt; = T34.new(&lt;str&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;str&gt;</code></td>
+<td>string</td>
+<td>表示麻将牌数值与花色的字符串</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>创建出的麻将牌</td>
+</tr>
+</tbody></table>
+
+<p>通过字符串创建。</p>
+
+<p>第一个字符代表数值，第二个字符代表花色。</p>
+
+<p><code>&quot;1m&quot;</code>, <code>&quot;2p&quot;</code>, <code>&quot;3s&quot;</code>代表 1 万、2 饼、3 索；</p>
+
+<p><code>&quot;1f&quot;</code>, <code>&quot;2f&quot;</code>, <code>&quot;3f&quot;</code>, <code>&quot;4f&quot;</code>, <code>&quot;1y&quot;</code>, <code>&quot;2y&quot;</code>, <code>&quot;3y&quot;</code>分别代表东南西北白发中。</p>
+<h2 id='id-34'>通过 ID-34 构造</h2>
+<p><code>local &lt;t&gt; = T34.new(&lt;id-34&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;id-34&gt;</code></td>
+<td>number</td>
+<td>ID-34</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>创建出的麻将牌</td>
+</tr>
+</tbody></table>
+
+<p>通过 ID-34 创建。</p>
+<h2 id='id34-id-34'><code>id34</code> 获取 ID-34</h2>
+<p><code>local &lt;id-34&gt; = &lt;t&gt;:id34()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;id-34&gt;</code></td>
+<td>number</td>
+<td>ID-34</td>
+</tr>
+</tbody></table>
+<h2 id='fe8f39dede'>获取花色</h2>
+<p><code>local &lt;suit&gt; = &lt;t&gt;:suit()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;suit&gt;</code></td>
+<td>string</td>
+<td>花色</td>
+</tr>
+</tbody></table>
+
+<p><code>&quot;m&quot;</code>, <code>&quot;p&quot;</code>, <code>&quot;s&quot;</code>, <code>&quot;f&quot;</code>, <code>&quot;y&quot;</code>分别表示万、饼、索、风牌、三元牌。</p>
+<h2 id='8d0dd529f0'>获取数值</h2>
+<p><code>local &lt;val&gt; = &lt;t&gt;:val()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;val&gt;</code></td>
+<td>number</td>
+<td>数值</td>
+</tr>
+</tbody></table>
+
+<p>数牌返回 1～9；
+风牌通过 1, 2, 3, 4 分别表示东南西北；
+三元牌通过 1, 2, 3 分别表示白发中。</p>
+<h2 id='cc4e0e7b88'>获取字符串表示</h2>
+<p><code>local &lt;str&gt; = &lt;t&gt;:str34()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;str&gt;</code></td>
+<td>string</td>
+<td>对应的字符串</td>
+</tr>
+</tbody></table>
+<h2 id='2ae251f1f7'>役牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isyakuhai(&lt;sw&gt;, &lt;rw&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+<tr>
+<td><code>&lt;sw&gt;</code></td>
+<td>number</td>
+<td>自风</td>
+</tr>
+<tr>
+<td><code>&lt;rw&gt;</code></td>
+<td>number</td>
+<td>场风</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t&gt;</code>是否为役牌</td>
+</tr>
+</tbody></table>
+<h2 id='a453f8b561'>相等判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t1&gt; == &lt;t2&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t1&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>一个麻将牌对象</td>
+</tr>
+<tr>
+<td><code>&lt;t2&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>另一个麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t1&gt;</code>与<code>&lt;t2&gt;</code>的花色与数值是否相同</td>
+</tr>
+</tbody></table>
+<h2 id='34'>遍历 34 种牌</h2>
+<p><code>for _, &lt;t&gt; in ipairs(T34.all) do &lt;...&gt; end</code>
+<a name="_"></a></p>
+<h1 id='t37'>麻将牌 <code>T37</code></h1>
+<p><code>T37</code>是<code>T34</code>的扩展牌本，严格区分赤宝牌与普通数牌5。</p>
+
+<p><code>T37</code>是一个<code>T34</code>。
+所有适用于<code>T34</code>的方法（如<code>suit</code>，<code>val</code>等）也适用于<code>T37</code>。
+所有能接受<code>T34</code>的地方也都能接受<code>T37</code>。</p>
+
+<aside class="warning">
+对<code>T37</code>使用<code>T34</code>的方法时，
+只会考虑<code>T34</code>的性质。
+例如，便用<code>==</code>进行相等判断时，
+只考虑数值与花色，不会考虑赤牌与黑牌的区别。
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='8cfb0a026a'>通过字符串构造</h2>
+<p><code>local &lt;t&gt; = T37.new(&lt;str&gt;)</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td><code>&lt;str&gt;</code></td>
+<td>string</td>
+<td>表示数值与花色的字符串</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>创建出的<code>T37</code>对象</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
+
+<p>可通过<code>&quot;0m&quot;</code>, <code>&quot;0p&quot;</code>, <code>&quot;0s&quot;</code>创建赤宝牌，其余同<code>T34</code>。</p>
+<h2 id='id-34'>通过 ID-34 构造</h2>
+<p><code>local &lt;t&gt; = T37.new(&lt;id-34&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;id-34&gt;</code></td>
+<td>number</td>
+<td>ID-34</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>创建出的<code>T37</code>对象</td>
+</tr>
+</tbody></table>
+
+<p>此方法不创建赤牌。</p>
+<h2 id='8255098554'>赤牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isaka5()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td>是否为赤宝牌</td>
+</tr>
+</tbody></table>
+<h2 id='9df238ed57'>获取对应的字符串</h2>
+<p><code>local &lt;str&gt; = &lt;t&gt;:str37()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;str&gt;</code></td>
+<td>string</td>
+<td>表示数值与花色的字符串</td>
+</tr>
+</tbody></table>
+
+<p>以<code>&quot;0m&quot;</code>, <code>&quot;0p&quot;</code>, <code>&quot;0s&quot;</code>表示赤 5。</p>
+<h1 id='who'>身价标识 <code>Who</code></h1><h2 id='a453f8b561'>相等判断</h2>
+<p><code>local &lt;ok&gt; = &lt;who1&gt; == &lt;who2&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>一个<code>Who</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>另一个<code>Who</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;who1&gt;</code>与<code>&lt;who2&gt;</code>是否指代同一人</td>
+</tr>
+</tbody></table>
+<h2 id='42267db625'>获取下家</h2>
+<p><code>local &lt;who2&gt; = &lt;who1&gt;:right()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>Who</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>&lt;who1&gt;</code>的下家</td>
+</tr>
+</tbody></table>
+<h2 id='83d6cd4bb1'>获取对家</h2>
+<p><code>local &lt;who2&gt; = &lt;who1&gt;:cross()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>Who</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>&lt;who1&gt;</code>的对家</td>
+</tr>
+</tbody></table>
+<h2 id='0a3865c4fd'>获取上家</h2>
+<p><code>local &lt;who2&gt; = &lt;who1&gt;:left()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>Who</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>&lt;who1&gt;</code>的上家</td>
+</tr>
+</tbody></table>
+<h1 id='m37'>副露与暗杠 <code>M37</code></h1>
+<p>下文中「副露与暗杠」统称为<em>bark</em>。</p>
+<h2 id='bark'>获取 bark 类型</h2>
+<p><code>local &lt;type&gt; = &lt;m&gt;:type()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;m&gt;</code></td>
+<td>userdata <code>M37</code></td>
+<td>一个<code>M37</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;type&gt;</code></td>
+<td>string</td>
+<td>bark 的类型</td>
+</tr>
+</tbody></table>
+
+<p>返回值为 <code>&quot;chii&quot;</code>, <code>&quot;pon&quot;</code>, <code>&quot;daiminkan&quot;</code>,<code>&quot;ankan&quot;</code>, <code>&quot;kakan&quot;</code>中的一个。</p>
+<h2 id='bark-2'>获取 bark 中的一张牌</h2>
+<p><code>local &lt;t&gt; = &lt;m&gt;[&lt;index&gt;]</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;m&gt;</code></td>
+<td>userdata <code>M37</code></td>
+<td>一个<code>M37</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;index&gt;</code></td>
+<td>number</td>
+<td>下标</td>
+</tr>
+</tbody></table>
+
+<p>通过下标获取 meld 中的一张牌。
+对于吃、碰，下标的范围是 1～3；
+对于杠，下标范围是 1～4。</p>
+
+<p>吃的下樯顺序是数牌的数值顺序。
+碰与大明杠的下标顺序是实际摆放的顺序，
+如果大明杠来自对家，则横放的是<code>&lt;m&gt;[2]</code>，而不是<code>&lt;m&gt;[3]</code>。
+暗杠的下樯顺序为「赤牌在前」。
+加杠的前三张牌顺序同碰，第四张牌为加杠牌。</p>
+<h1 id='mount'>牌山 <code>Mount</code></h1><h2 id='271b603022'>获取残枚</h2>
+<p><code>local &lt;n&gt; = &lt;mount&gt;:remainpii()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>壁牌残杖</td>
+</tr>
+</tbody></table>
+
+<p>此处「壁牌」指除王牌以外的普通山牌。</p>
+<h2 id='586c50ebb4'>获取岭上牌残枚</h2>
+<p><code>local &lt;n&gt; = &lt;mount&gt;:remainrinshan()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>岭上牌残杖</td>
+</tr>
+</tbody></table>
+
+<p>可间接得知目前已成立的杠的个数。</p>
+<h2 id='a'>查看 A 区中某牌个数</h2>
+<p><code>local &lt;n&gt; = &lt;mount&gt;:remaina(&lt;t&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code> 或 <code>T37</code></td>
+<td>要查看个数的牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>A 区中<code>&lt;t&gt;</code>的个数</td>
+</tr>
+</tbody></table>
+
+<p>当<code>&lt;t&gt;</code>为<code>T34</code>类型的数牌 5 时，结果为包含赤牌与黑牌的总个数；
+当<code>&lt;t&gt;</code>为<code>T37</code>类型时，严格区分赤宝牌。</p>
+
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+B 区中某牌的个数是不允许查看的。
 </aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<h2 id='002bc1c85c'>查看宝牌指示牌</h2>
+<p><code>local &lt;drids&gt; = &lt;mount&gt;:getdrids()</code></p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
 </tr>
 </tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;drids&gt;</code></td>
+<td>table (<code>T37</code>数组)</td>
+<td>（杠）宝牌指示牌序列</td>
+</tr>
+</tbody></table>
+<h2 id='f0f0dc15d4'>查看里宝牌指示牌</h2>
+<p><code>local &lt;urids&gt; = &lt;mount&gt;:geturids()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;urids&gt;</code></td>
+<td>table (<code>T37</code>数组)</td>
+<td>（杠）里宝牌指示牌序列</td>
+</tr>
+</tbody></table>
+
+<p>读取立直和牌后已亮出的（杠）里宝牌指示牌序列。
+若「立直和牌」尚未发生，则返回空表。</p>
+<h2 id='a-2'>改变 A 区中某牌存在感</h2>
+<p><code>&lt;mount&gt;:lighta(&lt;t&gt;, &lt;mk&gt;, &lt;rinshan&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code> 或 <code>T37</code></td>
+<td>要改变存在感的牌</td>
+</tr>
+<tr>
+<td><code>&lt;mk&gt;</code></td>
+<td>number</td>
+<td>存在感变化量</td>
+</tr>
+<tr>
+<td><code>&lt;rinshan&gt;</code></td>
+<td>boolean 或 nil</td>
+<td>选择影响岭上牌还是壁牌</td>
+</tr>
+</tbody></table>
+
+<p>改变 A 区壁牌或岭上牌出口处的下一张量子牌的存在感分布。</p>
+
+<p>当<code>&lt;t&gt;</code>为<code>T34</code>类型的数牌 5 时，同时影响赤牌与黑牌；
+当<code>&lt;t&gt;</code>为<code>T37</code>类型时，严格区分赤宝牌。</p>
+<h2 id='b'>改变 B 区中某牌存在感</h2>
+<p><code>&lt;mount&gt;:lightb(&lt;t&gt;, &lt;mk&gt;, &lt;rinshan&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code> 或 <code>T37</code></td>
+<td>要改变存在感的牌</td>
+</tr>
+<tr>
+<td><code>&lt;mk&gt;</code></td>
+<td>number</td>
+<td>存在感变化量</td>
+</tr>
+<tr>
+<td><code>&lt;rinshan&gt;</code></td>
+<td>boolean 或 nil</td>
+<td>选择影响岭上牌还是壁牌</td>
+</tr>
+</tbody></table>
+
+<p>改变 B 区壁牌或岭上牌出口处的下一张量子牌的存在感分布。</p>
+
+<p>当<code>&lt;t&gt;</code>为<code>T34</code>类型的数牌 5 时，同时影响赤牌与黑牌；
+当<code>&lt;t&gt;</code>为<code>T37</code>类型时，严格区分赤宝牌。</p>
+<h2 id='eaf94ee809'>改变某牌存在感（一般形式）</h2>
+<p><code>&lt;mount&gt;:inkmk(&lt;exit&gt;, &lt;pos&gt;, &lt;t&gt;, &lt;mk&gt;, &lt;bspace&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;exit&gt;</code></td>
+<td>string</td>
+<td>影响的出口（见下文说明）</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code> 或 <code>T37</code></td>
+<td>要改变存在感的牌</td>
+</tr>
+<tr>
+<td><code>&lt;mk&gt;</code></td>
+<td>number</td>
+<td>存在感变化量</td>
+</tr>
+<tr>
+<td><code>&lt;bspace&gt;</code></td>
+<td>boolean</td>
+<td><code>true</code>则影响 B 区，<code>false</code>则影响 A 区</td>
+</tr>
+</tbody></table>
+
+<p>以<code>mk</code>增加出口<code>exit</code>之<code>pos</code>处<code>tile</code>的存在感。</p>
+
+<p><code>exit</code>需传入<code>&quot;pii&quot;</code>, <code>&quot;rinshan&quot;</code>, <code>&quot;dorahyou&quot;</code>, <code>&quot;urahyou&quot;</code>之一，
+分别代表普通壁牌、岭上牌、未翻开的表宝牌指示牌、未挖出的里宝牌指示牌。</p>
+
+<p><code>pos</code>为 0 时代表出口处队首牌，1 时代表队首的下一张牌，以此类推。</p>
+
+<p>当<code>&lt;t&gt;</code>为<code>T34</code>类型的数牌 5 时，同时影响赤牌与黑牌；
+当<code>&lt;t&gt;</code>为<code>T37</code>类型时，严格区分赤宝牌。</p>
+<h2 id='b-2'>放入 B 区</h2>
+<p><code>&lt;mount&gt;:loadb(&lt;t&gt;, &lt;num&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td><code>Mount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>要放入 B 区的牌</td>
+</tr>
+<tr>
+<td><code>&lt;num&gt;</code></td>
+<td>number</td>
+<td>放入数量</td>
+</tr>
+</tbody></table>
+
+<p>将指定数量的牌由 A 区放入 B 区。若 A 区储量不足，则能放多少放多少。</p>
+
+<aside class="warning">
+参数麻将牌必须是<code>T37</code>类型的。
+</aside>
+<h1 id='tilecount'>麻将牌多集 <code>Tilecount</code></h1><h2 id='37802b1dfc'>计数</h2>
+<p><code>local &lt;n&gt; = &lt;tc&gt;:ct(&lt;t&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;tc&gt;</code></td>
+<td>userdata <code>Tilecount</code></td>
+<td><code>Tilecount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code> 或 <code>T37</code></td>
+<td>要计数的牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td><code>&lt;t&gt;</code>的数量</td>
+</tr>
+</tbody></table>
+
+<p>对于数牌 5，参数<code>&lt;t&gt;</code>为<code>T37</code>类型时区分赤宝牌，<code>T34</code>类型时返回包含赤、黑的总数量。</p>
+<h2 id='5d6254dc3e'>花色计数</h2>
+<p><code>local &lt;n&gt; = &lt;tc&gt;:ct(&lt;suit&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;tc&gt;</code></td>
+<td>userdata <code>Tilecount</code></td>
+<td><code>Tilecount</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;suit&gt;</code></td>
+<td>string</td>
+<td>要计数的花色</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td><code>&lt;t&gt;</code>的数量</td>
+</tr>
+</tbody></table>
+
+<p>参数<code>&lt;suit&gt;</code>须为<code>&quot;m&quot;</code>, <code>&quot;p&quot;</code>, <code>&quot;s&quot;</code>, <code>&quot;f&quot;</code>, <code>&quot;y&quot;</code>之一。</p>
+<h1 id='hand'>手牌 <code>Hand</code></h1>
+<p>本文档中「手牌」一词指包含纯手牌、自摸牌、副露、暗杠的广义手牌。</p>
+<h2 id='dce6041f8a'>获取纯手牌</h2>
+<p><code>local &lt;closed&gt; = &lt;hand&gt;:closed()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;closed&gt;</code></td>
+<td>userdata <code>Tilecount</code></td>
+<td>纯手牌</td>
+</tr>
+</tbody></table>
+
+<p>获取手牌中除自摸牌、副露、暗杠以处的纯手牌部分。</p>
+<h2 id='barks'>获取 barks</h2>
+<p><code>local &lt;barks&gt; = &lt;hand&gt;:barks()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;barks&gt;</code></td>
+<td>table （<code>M37</code>数组）</td>
+<td>barks 序列</td>
+</tr>
+</tbody></table>
+
+<p>获取表示副露与暗杠的 barks 部分。</p>
+<h2 id='37802b1dfc'>计数</h2>
+<p><code>local &lt;n&gt; = &lt;hand&gt;:ct(&lt;t&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>要计数的牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>手牌中<code>&lt;t&gt;</code>的总数量</td>
+</tr>
+</tbody></table>
+<h2 id='5'>赤 5 计数</h2>
+<p><code>local &lt;n&gt; = &lt;hand&gt;:ctaka5()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>手牌中赤 5 总数量</td>
+</tr>
+</tbody></table>
+<h2 id='84e5c3c23b'>听牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;hand&gt;:ready()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>number</td>
+<td>是否已形式听牌（不含纯空听）</td>
+</tr>
+</tbody></table>
+<h2 id='58aa1a06bc'>计算向听数</h2>
+<p><code>local &lt;step&gt; = &lt;hand&gt;:step()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;step&gt;</code></td>
+<td>number</td>
+<td>向听数</td>
+</tr>
+</tbody></table>
+<h2 id='74131892bf'>计算四面子向听数</h2>
+<p><code>local &lt;step&gt; = &lt;hand&gt;:step4()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;step&gt;</code></td>
+<td>number</td>
+<td>四面子向听数</td>
+</tr>
+</tbody></table>
+<h2 id='274eb1c622'>计算七对子向听数</h2>
+<p><code>local &lt;step&gt; = &lt;hand&gt;:step7()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;step&gt;</code></td>
+<td>number</td>
+<td>（日麻）七对子向听数</td>
+</tr>
+</tbody></table>
+<h2 id='2c5f2ce4f2'>计算国标七对子向听数</h2>
+<p><code>local &lt;step&gt; = &lt;hand&gt;:step7gb()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;step&gt;</code></td>
+<td>number</td>
+<td>国标七对子向听数</td>
+</tr>
+</tbody></table>
+<h2 id='6745431417'>计算国士向听数</h2>
+<p><code>local &lt;step&gt; = &lt;hand&gt;:step13()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;step&gt;</code></td>
+<td>number</td>
+<td>国士向听数</td>
+</tr>
+</tbody></table>
+<h2 id='6bf29cdbaa'>计算一类有效牌</h2>
+<p><code>local &lt;effas&gt; = &lt;hand&gt;:effa()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;effas&gt;</code></td>
+<td>table（<code>T34</code>数组）</td>
+<td>一类有效牌序列</td>
+</tr>
+</tbody></table>
+<h2 id='c5b48a5756'>计算四面子一类有效牌</h2>
+<p><code>local &lt;effa4s&gt; = &lt;hand&gt;:effa4()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;effa4s&gt;</code></td>
+<td>table（<code>T34</code>数组）</td>
+<td>四面子一类有效牌序列</td>
+</tr>
+</tbody></table>
+<h2 id='ed53d04308'>门前清判断</h2>
+<p><code>local &lt;ok&gt; = &lt;hand&gt;:ismenzen()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td>手牌是否为门前清</td>
+</tr>
+</tbody></table>
+<h2 id='ef9f05431e'>宝牌计数</h2>
+<p><code>local &lt;n&gt; = &lt;indicator&gt; % &lt;hand&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;indicator&gt;</code></td>
+<td>userdata ~T34<code>，</code>T37` 或其数组</td>
+<td>宝牌指示牌</td>
+</tr>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td><code>Hand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>被指示出的宝牌数</td>
+</tr>
+</tbody></table>
+<h1 id='game'>场况 <code>Game</code></h1><h2 id='bfd9e66b23'>获取某家手牌</h2>
+<p><code>local &lt;hand&gt; = &lt;game&gt;:gethand(&lt;who&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;who&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>谁的手牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td>手牌</td>
+</tr>
+</tbody></table>
+<h2 id='dab3b5df05'>获取局数</h2>
+<p><code>local &lt;round&gt; = &lt;game&gt;:getround()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;round&gt;</code></td>
+<td>number</td>
+<td>局数</td>
+</tr>
+</tbody></table>
+
+<p>局数从 0 开始。0 为东一，1 为东二，以此类推。</p>
+<h2 id='f24977deda'>获取本场数</h2>
+<p><code>local &lt;extra&gt; = &lt;game&gt;:getextraround()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;extra&gt;</code></td>
+<td>number</td>
+<td>本场数</td>
+</tr>
+</tbody></table>
+<h2 id='41f5153c68'>获取庄家</h2>
+<p><code>local &lt;dealer&gt; = &lt;game&gt;:getdealer()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;dealer&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>本局庄家</td>
+</tr>
+</tbody></table>
+<h2 id='5bccff2cd5'>获取某家自风</h2>
+<p><code>local &lt;sw&gt; = &lt;game&gt;:getselfwind(&lt;who&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;who&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>谁的自风</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;sw&gt;</code></td>
+<td>number</td>
+<td>自风牌的数值（1～4）</td>
+</tr>
+</tbody></table>
+<h2 id='51b6e0ba39'>获取场风</h2>
+<p><code>local &lt;rw&gt; = &lt;game&gt;:getroundwind()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;rw&gt;</code></td>
+<td>number</td>
+<td>场风牌的数值（1～4）</td>
+</tr>
+</tbody></table>
+<h2 id='09ccca7203'>获取某家牌河</h2>
+<p><code>local &lt;river&gt; = &lt;game&gt;:getriver(&lt;who&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;who&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>谁的牌河</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;river&gt;</code></td>
+<td>table（<code>T37</code>数组）</td>
+<td>牌河里的牌的序列</td>
+</tr>
+</tbody></table>
+<h1 id='game-event'>Game Event 表结构</h1>
+<p><code>ongameevent</code>中使用的<code>event</code>变量类型为 table，
+包含<code>type</code>和<code>args</code>两个字段。
+<code>type</code>字段为 string 类型，表示事件的类别；
+<code>args</code>字段为 table 类型，根据<code>type</code>的不同含有不同的字段。</p>
+
+<p>(文档准备中。目前可通过自行<code>pairs</code>遍历查看<code>args</code>内容。)</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="lua">lua</a>
           </div>
       </div>
     </div>
