@@ -11,7 +11,14 @@ toc_footers:
 includes:
   - callbacks
   - stdlib
-  - classes
+  - ud-t34
+  - ud-t37
+  - ud-who
+  - ud-m37
+  - ud-mount
+  - ud-tilecount
+  - ud-hand
+  - ud-game
   - events
 
 search: true
