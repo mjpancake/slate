@@ -260,10 +260,34 @@
                     <a href="#cc4e0e7b88" class="toc-h2 toc-link" data-title="获取字符串表示">获取字符串表示</a>
                   </li>
                   <li>
+                    <a href="#63299a9852" class="toc-h2 toc-link" data-title="字牌判断">字牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#b6cd402d92" class="toc-h2 toc-link" data-title="数牌判断">数牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#720d9ac4c4" class="toc-h2 toc-link" data-title="老头牌判断">老头牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#55565a19a7" class="toc-h2 toc-link" data-title="么九牌判断">么九牌判断</a>
+                  </li>
+                  <li>
                     <a href="#2ae251f1f7" class="toc-h2 toc-link" data-title="役牌判断">役牌判断</a>
                   </li>
                   <li>
                     <a href="#a453f8b561" class="toc-h2 toc-link" data-title="相等判断">相等判断</a>
+                  </li>
+                  <li>
+                    <a href="#34a5f45339" class="toc-h2 toc-link" data-title="大小判断">大小判断</a>
+                  </li>
+                  <li>
+                    <a href="#ce309c855c" class="toc-h2 toc-link" data-title="宝牌判断">宝牌判断</a>
+                  </li>
+                  <li>
+                    <a href="#3c27d08204" class="toc-h2 toc-link" data-title="宝牌推算">宝牌推算</a>
+                  </li>
+                  <li>
+                    <a href="#38c097b62b" class="toc-h2 toc-link" data-title="指示牌推算">指示牌推算</a>
                   </li>
                   <li>
                     <a href="#34" class="toc-h2 toc-link" data-title="遍历 34 种牌">遍历 34 种牌</a>
@@ -285,6 +309,9 @@
                   <li>
                     <a href="#9df238ed57" class="toc-h2 toc-link" data-title="获取对应的字符串">获取对应的字符串</a>
                   </li>
+                  <li>
+                    <a href="#5fd30fe877" class="toc-h2 toc-link" data-title="全等判断">全等判断</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -302,6 +329,18 @@
                   <li>
                     <a href="#0a3865c4fd" class="toc-h2 toc-link" data-title="获取上家">获取上家</a>
                   </li>
+                  <li>
+                    <a href="#caed150043" class="toc-h2 toc-link" data-title="转骰选人">转骰选人</a>
+                  </li>
+                  <li>
+                    <a href="#08bdc257af" class="toc-h2 toc-link" data-title="摸牌次数选人">摸牌次数选人</a>
+                  </li>
+                  <li>
+                    <a href="#b408b1cc02" class="toc-h2 toc-link" data-title="数字索引">数字索引</a>
+                  </li>
+                  <li>
+                    <a href="#9b70db3199" class="toc-h2 toc-link" data-title="相对距离计算">相对距离计算</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -312,6 +351,9 @@
                   </li>
                   <li>
                     <a href="#bark-2" class="toc-h2 toc-link" data-title="获取 bark 中的一张牌">获取 bark 中的一张牌</a>
+                  </li>
+                  <li>
+                    <a href="#b3eb219572" class="toc-h2 toc-link" data-title="检查某张牌的存在">检查某张牌的存在</a>
                   </li>
               </ul>
           </li>
@@ -781,6 +823,126 @@
 <td>对应的字符串</td>
 </tr>
 </tbody></table>
+<h2 id='63299a9852'>字牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isz()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t&gt;</code>是否为字牌</td>
+</tr>
+</tbody></table>
+<h2 id='b6cd402d92'>数牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isnum()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t&gt;</code>是否为数牌</td>
+</tr>
+</tbody></table>
+<h2 id='720d9ac4c4'>老头牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isnum19()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t&gt;</code>是否为老头牌</td>
+</tr>
+</tbody></table>
+<h2 id='55565a19a7'>么九牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t&gt;:isyao()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t&gt;</code>是否为么九牌</td>
+</tr>
+</tbody></table>
 <h2 id='2ae251f1f7'>役牌判断</h2>
 <p><code>local &lt;ok&gt; = &lt;t&gt;:isyakuhai(&lt;sw&gt;, &lt;rw&gt;)</code></p>
 
@@ -856,6 +1018,136 @@
 <td><code>&lt;t1&gt;</code>与<code>&lt;t2&gt;</code>的花色与数值是否相同</td>
 </tr>
 </tbody></table>
+<h2 id='34a5f45339'>大小判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t1&gt; &lt; &lt;t2&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t1&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>一个麻将牌对象</td>
+</tr>
+<tr>
+<td><code>&lt;t2&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>另一个麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;t1&gt;</code>在标准理牌中是否排在<code>&lt;t2&gt;</code>之前</td>
+</tr>
+</tbody></table>
+<h2 id='ce309c855c'>宝牌判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t1&gt; % &lt;t2&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t1&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>一个麻将牌对象</td>
+</tr>
+<tr>
+<td><code>&lt;t2&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>另一个麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td>指示牌<code>&lt;t1&gt;</code>是否指示<code>&lt;t2&gt;</code>为宝牌</td>
+</tr>
+</tbody></table>
+<h2 id='3c27d08204'>宝牌推算</h2>
+<p><code>local &lt;dora&gt; = &lt;id&gt;:dora()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;id&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>指示牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;dora&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>被<code>&lt;id&gt;</code>指示的宝牌</td>
+</tr>
+</tbody></table>
+<h2 id='38c097b62b'>指示牌推算</h2>
+<p><code>local &lt;id&gt; = &lt;dora&gt;:indicator()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;dora&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>宝牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;id&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>指示<code>&lt;dora&gt;</code>的指示牌</td>
+</tr>
+</tbody></table>
 <h2 id='34'>遍历 34 种牌</h2>
 <p><code>for _, &lt;t&gt; in ipairs(T34.all) do &lt;...&gt; end</code>
 <a name="_"></a></p>
@@ -866,11 +1158,15 @@
 所有适用于<code>T34</code>的方法（如<code>suit</code>，<code>val</code>等）也适用于<code>T37</code>。
 所有能接受<code>T34</code>的地方也都能接受<code>T37</code>。</p>
 
+<p>反之，<code>T34</code>不一定是<code>T37</code>。只接受<code>T37</code>的地方是不接受<code>T34</code>的。</p>
+
 <aside class="warning">
 对<code>T37</code>使用<code>T34</code>的方法时，
 只会考虑<code>T34</code>的性质。
 例如，便用<code>==</code>进行相等判断时，
 只考虑数值与花色，不会考虑赤牌与黑牌的区别。
+将<code>T37</code>对象传给只接受<code>T34</code>的地方时，
+也只会发挥出<code>T34</code>的性质。
 </aside>
 <h2 id='8cfb0a026a'>通过字符串构造</h2>
 <p><code>local &lt;t&gt; = T37.new(&lt;str&gt;)</code></p>
@@ -998,6 +1294,41 @@
 </tbody></table>
 
 <p>以<code>&quot;0m&quot;</code>, <code>&quot;0p&quot;</code>, <code>&quot;0s&quot;</code>表示赤 5。</p>
+<h2 id='5fd30fe877'>全等判断</h2>
+<p><code>local &lt;ok&gt; = &lt;t1&gt;:lookssame(&lt;t2&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;t1&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>一个麻将牌对象</td>
+</tr>
+<tr>
+<td><code>&lt;t2&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>另一个麻将牌对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td>花色、数值、以及赤牌属性是否皆相等</td>
+</tr>
+</tbody></table>
 <h1 id='who'>身价标识 <code>Who</code></h1><h2 id='a453f8b561'>相等判断</h2>
 <p><code>local &lt;ok&gt; = &lt;who1&gt; == &lt;who2&gt;</code></p>
 
@@ -1123,6 +1454,147 @@
 <td><code>&lt;who1&gt;</code>的上家</td>
 </tr>
 </tbody></table>
+<h2 id='caed150043'>转骰选人</h2>
+<p><code>local &lt;who2&gt; = &lt;who1&gt;:bydice(&lt;dice&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>转骰子的人</td>
+</tr>
+<tr>
+<td><code>&lt;dice&gt;</code></td>
+<td>number</td>
+<td>骰子点数</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>被骰子指向的人</td>
+</tr>
+</tbody></table>
+<h2 id='08bdc257af'>摸牌次数选人</h2>
+<p><code>local &lt;who2&gt; = &lt;who1&gt;:byturn(&lt;turn&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>Who</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;turn&gt;</code></td>
+<td>number</td>
+<td>骰子点数</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>&lt;who1&gt;</code>之后第<code>&lt;turn&gt;</code>个摸牌的人</td>
+</tr>
+</tbody></table>
+<h2 id='b408b1cc02'>数字索引</h2>
+<p><code>local &lt;index&gt; = &lt;who&gt;:index()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td><code>Who</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;index&gt;</code></td>
+<td>number</td>
+<td>一个数字，常用于表键</td>
+</tr>
+</tbody></table>
+<h2 id='9b70db3199'>相对距离计算</h2>
+<p><code>local &lt;dist&gt; = &lt;who1&gt;:turnfrom(&lt;who2&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;who1&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>等待方</td>
+</tr>
+<tr>
+<td><code>&lt;who2&gt;</code></td>
+<td>userdata <code>Who</code></td>
+<td>被等待方</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;dist&gt;</code></td>
+<td>number</td>
+<td>双方距离</td>
+</tr>
+</tbody></table>
+
+<p>在没有鸣牌的假设下，
+计算从<code>&lt;who2&gt;</code>摸牌到<code>&lt;who1&gt;</code>摸牌之间最少需要的回合跳转数。</p>
+
+<p>即：如果<code>&lt;who2&gt; == &lt;who1&gt;</code>，返回 0，
+<code>&lt;who2&gt; == &lt;who1&gt;:left()</code>，返回 1，以此类推。</p>
 <h1 id='m37'>副露与暗杠 <code>M37</code></h1>
 <p>下文中「副露与暗杠」统称为<em>bark</em>。</p>
 <h2 id='bark'>获取 bark 类型</h2>
@@ -1179,15 +1651,72 @@
 </tr>
 </tbody></table>
 
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;type&gt;</code></td>
+<td>userdata <code>T37</code></td>
+<td>麻将牌</td>
+</tr>
+</tbody></table>
+
 <p>通过下标获取 meld 中的一张牌。
 对于吃、碰，下标的范围是 1～3；
 对于杠，下标范围是 1～4。</p>
 
-<p>吃的下樯顺序是数牌的数值顺序。
-碰与大明杠的下标顺序是实际摆放的顺序，
-如果大明杠来自对家，则横放的是<code>&lt;m&gt;[2]</code>，而不是<code>&lt;m&gt;[3]</code>。
-暗杠的下樯顺序为「赤牌在前」。
-加杠的前三张牌顺序同碰，第四张牌为加杠牌。</p>
+<p>下标的意义定义如下：</p>
+
+<ul>
+<li>吃的下标顺序是数牌的数值顺序</li>
+<li>碰的下标顺序是实际摆放的顺序</li>
+<li>大明杠的情况需参考部分网麻中的类似加杠的浓缩式摆放，
+其中前三张下标顺序同碰，代表下层实际摆放顺序，
+而第四张牌则必定是手中原有的牌</li>
+<li>暗杠的下标顺序为「赤牌在前」</li>
+<li>加杠的前三张牌顺序同碰，第四张牌为加杠牌</li>
+</ul>
+
+<p>对于碰与明杠而言，下标顺序唯一的意义在于区分赤牌的来源。</p>
+<h2 id='b3eb219572'>检查某张牌的存在</h2>
+<p><code>local &lt;ok&gt; = &lt;m&gt;:has(&lt;t&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;m&gt;</code></td>
+<td>userdata <code>M37</code></td>
+<td>一个<code>M37</code>对象</td>
+</tr>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>userdata <code>T34</code></td>
+<td>一个<code>M34</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;ok&gt;</code></td>
+<td>boolean</td>
+<td><code>&lt;m&gt;</code>中是否含有<code>&lt;t&gt;</code></td>
+</tr>
+</tbody></table>
 <h1 id='mount'>牌山 <code>Mount</code></h1><h2 id='271b603022'>获取残枚</h2>
 <p><code>local &lt;n&gt; = &lt;mount&gt;:remainpii()</code></p>
 
