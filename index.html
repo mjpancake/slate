@@ -225,6 +225,9 @@
             <a href="#d4c6f6b448" class="toc-h1 toc-link" data-title="回调函数">回调函数</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#3e0ca3ca66" class="toc-h2 toc-link" data-title="猴子阶段前搞事情">猴子阶段前搞事情</a>
+                  </li>
+                  <li>
                     <a href="#28f885d964" class="toc-h2 toc-link" data-title="检查配牌">检查配牌</a>
                   </li>
                   <li>
@@ -502,6 +505,37 @@
 必要的数据可从特定的全局变量中获取。</p>
 
 <p>(TODO global var &#39;self&#39;)</p>
+<h2 id='3e0ca3ca66'>猴子阶段前搞事情</h2>
+<blockquote>
+<p>例：增加自己的配牌中摸到 1m 的概率：</p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">onmonkey</span><span class="p">()</span>
+  <span class="kd">local</span> <span class="n">exist</span> <span class="o">=</span> <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()]</span>
+  <span class="n">exist</span><span class="p">.</span><span class="n">inkmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1m"</span><span class="p">),</span> <span class="mi">400</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre><h3 id='7f7f9e027f'>函数名</h3>
+<p><code>onmonkey</code></p>
+<h3 id='4cc58268ed'>可用全局变量</h3>
+<table><thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>game</code></td>
+<td>userdata <code>Game</code></td>
+<td>当前牌桌数据</td>
+</tr>
+<tr>
+<td><code>exists</code></td>
+<td>table（<code>Exist</code>数组）</td>
+<td>4 个人的存在感分布</td>
+</tr>
+</tbody></table>
+<h3 id='f565dac200'>具体用法</h3>
+<p>(TODO)</p>
 <h2 id='28f885d964'>检查配牌</h2>
 <blockquote>
 <p>例：要求配牌向听数小于等于 1：</p>
@@ -513,9 +547,9 @@
 
   <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">step</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span>
 <span class="k">end</span>
-</code></pre><h3 id='7f7f9e027f'>函数名</h3>
+</code></pre><h3 id='7f7f9e027f-2'>函数名</h3>
 <p><code>checkinit</code></p>
-<h3 id='4cc58268ed'>可用全局变量</h3>
+<h3 id='4cc58268ed-2'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -544,16 +578,16 @@
 <td>检测轮数，从0 开始递增，最大 999</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200'>具体用法</h3>
+<h3 id='f565dac200-2'>具体用法</h3>
 <p>检查配牌，当且仅当满意配牌时返回<code>true</code>
 (TODO)</p>
 
 <aside class="notice">
 <code>checkinit</code>必须返回一个 boolean 类型的值
 </aside>
-<h2 id='fd8bf47d14'>摸牌前搞事情</h2><h3 id='7f7f9e027f-2'>函数名</h3>
+<h2 id='fd8bf47d14'>摸牌前搞事情</h2><h3 id='7f7f9e027f-3'>函数名</h3>
 <p><code>ondraw</code></p>
-<h3 id='4cc58268ed-2'>可用全局变量</h3>
+<h3 id='4cc58268ed-3'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -582,12 +616,12 @@
 <td>下一张摸牌是否为岭上牌</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200-2'>具体用法</h3>
+<h3 id='f565dac200-3'>具体用法</h3>
 <p>摸牌前被调用，可干涉牌山
 (TODO)</p>
-<h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-3'>函数名</h3>
+<h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-4'>函数名</h3>
 <p><code>ongameevent</code></p>
-<h3 id='4cc58268ed-3'>可用全局变量</h3>
+<h3 id='4cc58268ed-4'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -606,7 +640,7 @@
 <td>发生的事件</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200-3'>具体用法</h3>
+<h3 id='f565dac200-4'>具体用法</h3>
 <p>发生某些事件前调用，不可直接干涉牌山
 (TODO)</p>
 <h1 id='lua'>Lua 标准库</h1>
