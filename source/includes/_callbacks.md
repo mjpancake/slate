@@ -6,6 +6,32 @@
 
 (TODO global var 'self')
 
+## 猴子阶段前搞事情
+
+> 例：增加自己的配牌中摸到 1m 的概率：
+
+```lua
+function onmonkey()
+  local exist = exists[self:index()]
+  exist.inkmk(T34.new("1m"), 400)
+end
+```
+
+### 函数名
+
+`onmonkey`
+
+### 可用全局变量
+
+变量名 | 类型 | 描述
+------ | ---- | ----
+`game` | userdata `Game` | 当前牌桌数据
+`exists`| table（`Exist`数组） | 4 个人的存在感分布
+
+### 具体用法
+
+(TODO)
+
 ## 检查配牌
 
 > 例：要求配牌向听数小于等于 1：
