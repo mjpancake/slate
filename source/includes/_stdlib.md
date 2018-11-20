@@ -10,6 +10,7 @@
 - `math`中除去`math.random`和`math.randomseed`以外的所有函数
 - `pairs`, `ipairs`
 - `print`
+- `type`
 - `tostring`
 
 将来可能会放宽限制，支持更多的标准库成员。
