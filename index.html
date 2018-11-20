@@ -228,7 +228,7 @@
                     <a href="#3e0ca3ca66" class="toc-h2 toc-link" data-title="猴子阶段前搞事情">猴子阶段前搞事情</a>
                   </li>
                   <li>
-                    <a href="#28f885d964" class="toc-h2 toc-link" data-title="检查配牌">检查配牌</a>
+                    <a href="#f7cf6a1a86" class="toc-h2 toc-link" data-title="猴子阶段配牌检查">猴子阶段配牌检查</a>
                   </li>
                   <li>
                     <a href="#fd8bf47d14" class="toc-h2 toc-link" data-title="摸牌前搞事情">摸牌前搞事情</a>
@@ -497,14 +497,25 @@
 <a href="https://mjpancake.github.io/">主站</a>
 上的的零基础教程。</p>
 
-<p>本文档目前比较简略，我们还在持续添加更多的细节说明与样例。
+<p>本文档目前比较简略，我们还在持续添加更多的细节说明与代码样例。
 遇到任何问题，可在企鹅群提问。</p>
+
+<p>下文会用到一些松饼麻雀内部特有的概念和术语，
+例如「牌山 A 区」、「猴子阶段」、「毫兔值」等等。
+将来本文档会对这些概念做一些详细的解释，
+而目前这些概念的具体定义暂时可以在
+<a href="https://mjpancake.github.io/docs/libsaki/">Libsaki 代码导读</a>
+中查到。那个代码导读是针对 C++ 的，但基本的设计与 Lua 相通。
+大多数术语都定义在其中的「牌山系统」和「发牌姬」两个章节。</p>
 <h1 id='d4c6f6b448'>回调函数</h1>
 <p>在 Lua 脚本文件中，以特定的名称定义函数，即可在特定的时机插入自己的逻辑。
 这些函数都不需要参数，
 必要的数据可从特定的全局变量中获取。</p>
 
-<p>(TODO global var &#39;self&#39;)</p>
+<p>有一个特殊的全局变量<code>self</code>，在 Lua 文件的任何位置都可用。
+该变量为 userdata <code>Who</code> 类型，代表当前 Lua 文件对应的自身角色。
+其它的全局变量（例如<code>game</code>, <code>who</code>, <code>mount</code>等）只在特定的回调函数中可用，
+下面的文档中有详细说明。</p>
 <h2 id='3e0ca3ca66'>猴子阶段前搞事情</h2>
 <blockquote>
 <p>例：增加自己的配牌中摸到 1m 的概率：</p>
@@ -535,17 +546,53 @@
 </tr>
 </tbody></table>
 <h3 id='f565dac200'>具体用法</h3>
-<p>(TODO)</p>
-<h2 id='28f885d964'>检查配牌</h2>
+<p>定义<code>onmonkey</code>函数，即可在猴子配牌阶段搞事情。
+通常我们会在这个阶段通过操作<code>exists</code>来影响配牌中各种牌出现的概率。</p>
+
+<p><code>exists</code>是一个数组，里面有四个<code>Exist</code>类型的 userdata 对象，
+分别控制四个人的配牌。该数组需与<code>Who</code>类型的<code>index</code>函数配合使用 ——
+例如，<code>exists[self:index()]</code>即为自己的<code>Exist</code>，
+<code>exists[self:right():index()]</code>即为下家的<code>Exist</code>。</p>
+
+<aside class="warning">
+请勿直接使用 number 字面值索引<code>exists</code>，例如<code>exists[1]</code>。
+当前角色的索引不一定是某个特定数字。
+</aside>
+
+<p><code>Exist</code>类型只有一个<code>inkmk</code>方法，用于改变某种牌的存在感。
+其基本用法为：</p>
+
+<p><code>&lt;exist&gt;:inkmk(&lt;t&gt;, &lt;mk&gt;)</code></p>
+
+<p>其中<code>&lt;t&gt;</code>为<code>T34</code>或<code>T37</code>类型的麻将牌，<code>&lt;mk&gt;</code>为毫兔单位的存在感变化量。
+当<code>&lt;t&gt;</code>为<code>T37</code>类型时，该变化严格区分赤宝牌。</p>
+<h2 id='f7cf6a1a86'>猴子阶段配牌检查</h2>
 <blockquote>
-<p>例：要求配牌向听数小于等于 1：</p>
+<p>例：要求自己的配牌向听数小于等于 1：</p>
 </blockquote>
 <pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">checkinit</span><span class="p">()</span>
-  <span class="k">if</span> <span class="n">who</span> <span class="o">~=</span> <span class="n">self</span> <span class="k">then</span>
+  <span class="c1">-- 他家配牌，无条件满意</span>
+  <span class="c1">-- 最多坚持 100 次生成</span>
+  <span class="k">if</span> <span class="n">who</span> <span class="o">~=</span> <span class="n">self</span> <span class="ow">or</span> <span class="n">iter</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">then</span>
     <span class="k">return</span> <span class="kc">true</span>
   <span class="k">end</span>
 
+  <span class="c1">-- 自家配牌，向听数小于 1</span>
   <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">step</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+<span class="k">end</span>
+</code></pre>
+<blockquote>
+<p>例：要求他家配牌不含西风：</p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">checkinit</span><span class="p">()</span>
+  <span class="c1">-- 自家配牌，无条件满意</span>
+  <span class="c1">-- 最多坚持 100 次生成</span>
+  <span class="k">if</span> <span class="n">who</span> <span class="o">==</span> <span class="n">self</span> <span class="ow">or</span> <span class="n">iter</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kc">true</span>
+  <span class="k">end</span>
+
+  <span class="c1">-- 自家配牌，西风数为 0</span>
+  <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">ct</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"3f"</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
 <span class="k">end</span>
 </code></pre><h3 id='7f7f9e027f-2'>函数名</h3>
 <p><code>checkinit</code></p>
@@ -579,13 +626,67 @@
 </tr>
 </tbody></table>
 <h3 id='f565dac200-2'>具体用法</h3>
-<p>检查配牌，当且仅当满意配牌时返回<code>true</code>
-(TODO)</p>
+<p>猴子阶段中，发牌姬会不断地为一家生成配牌，
+直到四家都对生成的配牌表示满意。
+这个用来表示是否满意的地方，就是<code>checkinit</code>的返回值。
+若对配牌满意，<code>checkinit</code>则应当返回<code>true</code>；不满意则应当返回<code>false</code>。</p>
 
 <aside class="notice">
-<code>checkinit</code>必须返回一个 boolean 类型的值
+<code>checkinit</code>必须返回一个 boolean 类型的值。
 </aside>
-<h2 id='fd8bf47d14'>摸牌前搞事情</h2><h3 id='7f7f9e027f-3'>函数名</h3>
+
+<p><code>init</code>为发牌姬在第<code>iter</code>轮猴子配牌中为<code>who</code>生成的配牌草案。
+我们可以对<code>init</code>做各种分析，看看它是否满足我们想要的条件。</p>
+
+<p><code>checkinit</code>中的逻辑应该是小于 1 毫秒的轻量级的计算。
+计算向听数、有效牌、或查看手牌组成都是没问题的。
+比较容易出问题的是相对精确的和了率分析与打点期望预估。</p>
+
+<aside class="warning">
+不要在<code>checkinit</code>中做重型计算。
+如须更复杂的配牌条件，考虑使用非猴子阶段的发牌姬接口。
+</aside>
+
+<blockquote>
+<p>例：通过<code>onmonkey</code>和<code>checkinit</code>的配合，实现万子清一色配牌：</p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">onmonkey</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span> <span class="k">do</span>
+    <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()].</span><span class="n">incmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">i</span> <span class="o">..</span> <span class="s2">"m"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">checkinit</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">who</span> <span class="o">~=</span> <span class="n">self</span> <span class="ow">or</span> <span class="n">iter</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kc">true</span>
+  <span class="k">end</span>
+
+  <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">closed</span><span class="p">():</span><span class="n">ct</span><span class="p">(</span><span class="s2">"m"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">13</span>
+<span class="k">end</span>
+</code></pre>
+<p>此外，<code>checkinit</code>只适合筛选高概率出现的配牌 ——
+例如一向听、五向听、无字等等。
+如果需要筛选出现概率本不高的牌（例如清一色），
+则需要配合<code>onmonkey</code>或非猴子阶段的处理，先使得这种配牌出现的概率变高，
+然后再通过<code>checkinit</code>进行筛选。</p>
+
+<aside class="success">
+<code>checkinit</code>只是一个最后把关的质检员，
+而复杂配牌的创造还需靠<code>onmonkey</code>和非猴子阶段 ——
+除非你想要的配牌本身就很常见。
+</aside>
+<h2 id='fd8bf47d14'>摸牌前搞事情</h2>
+<blockquote>
+<p>例：增加自己摸到白板的概率：</p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">ondraw</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">who</span> <span class="o">~=</span> <span class="n">self</span> <span class="ow">or</span> <span class="n">rinshan</span> <span class="k">then</span>
+    <span class="k">return</span>
+  <span class="k">end</span>
+
+  <span class="n">mount</span><span class="p">:</span><span class="n">lighta</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1y"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre><h3 id='7f7f9e027f-3'>函数名</h3>
 <p><code>ondraw</code></p>
 <h3 id='4cc58268ed-3'>可用全局变量</h3>
 <table><thead>
@@ -617,8 +718,7 @@
 </tr>
 </tbody></table>
 <h3 id='f565dac200-3'>具体用法</h3>
-<p>摸牌前被调用，可干涉牌山
-(TODO)</p>
+<p>摸牌前被调用，可干涉牌山。</p>
 <h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-4'>函数名</h3>
 <p><code>ongameevent</code></p>
 <h3 id='4cc58268ed-4'>可用全局变量</h3>
@@ -641,8 +741,13 @@
 </tr>
 </tbody></table>
 <h3 id='f565dac200-4'>具体用法</h3>
-<p>发生某些事件前调用，不可直接干涉牌山
-(TODO)</p>
+<p><code>ongameevent</code>会在发生某些事件前调用。</p>
+
+<p><code>ongameevent</code>内不可直接干涉牌山，
+一舰用于更新一些当前角色的内部状态，或记录一些信息。</p>
+
+<p><code>event</code>参数是一个 table，里面记录了与本次事件相关的各种信息。
+<a href="#game-event">Game Event 表结构</a> 一章中有对该 table 的详细说明。</p>
 <h1 id='lua'>Lua 标准库</h1>
 <p>为了防止世界被破坏，
 松饼中只能使用一部分的 Lua 标准库与内建函数。</p>
@@ -655,6 +760,7 @@
 <li><code>math</code>中除去<code>math.random</code>和<code>math.randomseed</code>以外的所有函数</li>
 <li><code>pairs</code>, <code>ipairs</code></li>
 <li><code>print</code></li>
+<li><code>type</code></li>
 <li><code>tostring</code></li>
 </ul>
 
