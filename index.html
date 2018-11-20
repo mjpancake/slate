@@ -522,7 +522,7 @@
 </blockquote>
 <pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">onmonkey</span><span class="p">()</span>
   <span class="kd">local</span> <span class="n">exist</span> <span class="o">=</span> <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()]</span>
-  <span class="n">exist</span><span class="p">.</span><span class="n">inkmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1m"</span><span class="p">),</span> <span class="mi">400</span><span class="p">)</span>
+  <span class="n">exist</span><span class="p">:</span><span class="n">incmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1m"</span><span class="p">),</span> <span class="mi">400</span><span class="p">)</span>
 <span class="k">end</span>
 </code></pre><h3 id='7f7f9e027f'>函数名</h3>
 <p><code>onmonkey</code></p>
@@ -559,10 +559,10 @@
 当前角色的索引不一定是某个特定数字。
 </aside>
 
-<p><code>Exist</code>类型只有一个<code>inkmk</code>方法，用于改变某种牌的存在感。
+<p><code>Exist</code>类型只有一个<code>incmk</code>方法，用于改变某种牌的存在感。
 其基本用法为：</p>
 
-<p><code>&lt;exist&gt;:inkmk(&lt;t&gt;, &lt;mk&gt;)</code></p>
+<p><code>&lt;exist&gt;:incmk(&lt;t&gt;, &lt;mk&gt;)</code></p>
 
 <p>其中<code>&lt;t&gt;</code>为<code>T34</code>或<code>T37</code>类型的麻将牌，<code>&lt;mk&gt;</code>为毫兔单位的存在感变化量。
 当<code>&lt;t&gt;</code>为<code>T37</code>类型时，该变化严格区分赤宝牌。</p>
@@ -652,7 +652,7 @@
 </blockquote>
 <pre class="highlight lua tab-lua"><code><span class="k">function</span> <span class="nf">onmonkey</span><span class="p">()</span>
   <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span> <span class="k">do</span>
-    <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()].</span><span class="n">incmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">i</span> <span class="o">..</span> <span class="s2">"m"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()]:</span><span class="n">incmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">i</span> <span class="o">..</span> <span class="s2">"m"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
