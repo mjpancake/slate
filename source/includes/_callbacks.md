@@ -16,7 +16,7 @@
 ```lua
 function onmonkey()
   local exist = exists[self:index()]
-  exist.inkmk(T34.new("1m"), 400)
+  exist:incmk(T34.new("1m"), 400)
 end
 ```
 
@@ -46,10 +46,10 @@ end
 当前角色的索引不一定是某个特定数字。
 </aside>
 
-`Exist`类型只有一个`inkmk`方法，用于改变某种牌的存在感。
+`Exist`类型只有一个`incmk`方法，用于改变某种牌的存在感。
 其基本用法为：
 
-`<exist>:inkmk(<t>, <mk>)`
+`<exist>:incmk(<t>, <mk>)`
 
 其中`<t>`为`T34`或`T37`类型的麻将牌，`<mk>`为毫兔单位的存在感变化量。
 当`<t>`为`T37`类型时，该变化严格区分赤宝牌。
@@ -127,7 +127,7 @@ end
 ```lua
 function onmonkey()
   for i = 1, 9 do
-    exists[self:index()].incmk(T34.new(i .. "m"), 200)
+    exists[self:index()]:incmk(T34.new(i .. "m"), 200)
   end
 end
 
