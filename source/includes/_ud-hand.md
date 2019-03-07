@@ -176,3 +176,33 @@
 ------ | ---- | ----
 `<n>` | number | 被指示出的宝牌数
 
+# 梦中手牌 `Dreamhand`
+
+`Dreamhand`是`Hand`的扩展牌本，是可以修改的手牌。
+
+`Hand`代表牌桌上的真实手牌，只能由正常的打牌操作修改，外挂技能无法干涉
+（否则就是作弊了）。
+`Dreamhand`与`Hand`不同，是一个脑中假想的手牌，因此可以随意修改。
+
+`Dreamhand`是一个`Hand`。
+所有适用于`Hand`的方法（如`step`，`effa`等）也适用于`Dreamhand`。
+所有能接受`Hand`的地方也都能接受`Dreamhand`。
+
+## 从`Hand`复制
+
+`local <dream> = Dreamhand.new(<hand>)`
+
+参数 | 类型 | 描述
+---- | ---- | ----
+`<hand>` | userdata `Hand` | 被复制的手牌
+
+返回值 | 类型 | 描述
+------ | ---- | ----
+`<dream>`  | userdata `Dreamhand` | 创建出的`Dreamhand`对象
+
+<aside class="notice">
+别忘了<code>Dreamhand</code>是一个<code>Hand</code>，
+能够从<code>Hand</code>复制，
+就意味着也能从<code>Dreamhand</code>复制。
+</aside>
+
