@@ -26,7 +26,8 @@
 </aside>
 
 `Form`是用来「绝对精确」地计算得点的。
-然而在技能的实现中，我们往往并不需要绝对精确。
+然而在技能的实现中，我们往往并不需要绝对精确，
+或者因条件不足无法做到绝对精确。
 这时如果使用`Form`就是在浪费计算性能了。
 如果只是需要粗略地估算得点，建议自已另行设计一套算法。
 反正可以通过`Hand`读取手牌的完整信息，
@@ -34,28 +35,33 @@
 
 <aside class="notice">
 一个典型的估点算法就是「数宝牌」。
-当然，这有些太粗略了。
+当然这有些太粗略了。
 可以在此基础之上，再加一些断么、役牌等常见役种的判断 ——
 这些都不难实现。
 </aside>
 
 ## 从自摸构建
 
-`local <form> = Form.new(<hand>, <formctx>, <rule>)`
+`local <form> = Form.new(<hand>, <formctx>, <rule>, <drids>, <urids>)`
 
 参数 | 类型 | 描述
 ---- | ---- | ----
 `<hand>` | userdata `Hand` | 自摸和了形
 `<formctx>` | userdata `Formctx` | 役种上下文
 `<rule>` | userdata `Rule` | 麻将规则配置
+`<drids>` | table (`T37`数组) | 表宝牌指示牌序列，可省略
+`<urids>` | table (`T37`数组) | 里宝牌指示牌序列，可省略
 
 返回值 | 类型 | 描述
 ------ | ---- | ----
 `<form>`  | userdata `Form` | 创建出的`Form`对象
 
+通过一组已通过自摸达到「形式和了」的手牌构建`Form`。
+若`<hand>`并未达到形式和了，则报错并中止运行。
+
 ## 从食和构建
 
-`local <form> = Form.new(<hand>, <final>, <formctx>, <rule>)`
+`local <form> = Form.new(<hand>, <final>, <formctx>, <rule>, <drids>, <urids>)`
 
 参数 | 类型 | 描述
 ---- | ---- | ----
@@ -63,10 +69,16 @@
 `<final>` | userdata `T37` | 铳牌
 `<formctx>` | userdata `Formctx` | 役种上下文
 `<rule>` | userdata `Rule` | 麻将规则配置
+`<drids>` | table (`T37`数组) | 表宝牌指示牌序列，可省略
+`<urids>` | table (`T37`数组) | 里宝牌指示牌序列，可省略
 
 返回值 | 类型 | 描述
 ------ | ---- | ----
-`<form>`  | userdata `Form` | 创建出的`Form`对象
+`<form>` | userdata `Form` | 创建出的`Form`对象
+
+通过一组已通过食和达到「形式和了」的手牌构建`Form`。
+若`<hand>`与`<final>`并未构成形式和了，则报错并中止运行。
+
 
 ## 关于`Formctx`和`Rule`
 
@@ -128,6 +140,9 @@ end
 `returnlevel`   | number | 返点
 `roundlimit`    | number | 局数（4=东风，8=半庄）
 
+`game:getformctx`与`game:getrule`返回的对象都是副本。
+修改其返回傎并不会影响到当前牌桌上的上下文和规则。
+
 ## 例牌役满判断
 
 `local <ok> = <form>:isprototypalyakuman()`
@@ -179,8 +194,48 @@ end
 ------ | ---- | ----
 `<base>` | number | 翻数
 
-基本点就是「符数的翻数与 2 之和次幂与 2000 间较小数」那个玩意，
+基本点就是「符 ^ (翻 + 2)」那个玩意，
 满贯 2000，跳满 3000 什么的。
+
+## 表宝牌数
+
+`local <dora> = <form>:dora()`
+
+参数 | 类型 | 描述
+---- | ---- | ----
+`<form>` | userdata `Form` | 手役
+
+返回值 | 类型 | 描述
+------ | ---- | ----
+`<dora>` | number | （杠）表宝牌数
+
+当存在多枚相同的指示牌时，同一张宝牌会被计算对应次。
+
+## 里宝牌数
+
+`local <uradora> = <form>:uradora()`
+
+参数 | 类型 | 描述
+---- | ---- | ----
+`<form>` | userdata `Form` | 手役
+
+返回值 | 类型 | 描述
+------ | ---- | ----
+`<uradora>` | number | （杠）里宝牌数
+
+当存在多枚相同的指示牌时，同一张里宝牌会被计算对应次。
+
+## 赤宝牌数
+
+`local <akadora> = <form>:akadora()`
+
+参数 | 类型 | 描述
+---- | ---- | ----
+`<form>` | userdata `Form` | 手役
+
+返回值 | 类型 | 描述
+------ | ---- | ----
+`<akadora>` | number | 赤宝牌数
 
 ## 役种集合
 
@@ -193,6 +248,8 @@ end
 返回值 | 类型 | 描述
 ------ | ---- | ----
 `<yakus>` | table（string 集合）| 役种集合
+
+此方法用于查看该和了形中成立的具体役种。
 
 `<yakus>`是一个 Lua 表，键类型为 string，代表役种；键若存在，则对应的值为`true`。
 各种 string 代表的役种见下表。
