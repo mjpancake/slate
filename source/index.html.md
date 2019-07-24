@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - callbacks
   - stdlib
+  - ud-rand
   - ud-t34
   - ud-t37
   - ud-who

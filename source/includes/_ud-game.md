@@ -76,6 +76,21 @@
 ------ | ---- | ----
 `<rw>` | number | 场风牌的数值（1～4）
 
+## 获取牌山（只读）
+
+`local <mount> = <game>:getmount()`
+
+参数 | 类型 | 描述
+---- | ---- | ----
+`<game>` | userdata `Game` | `Game`对象
+
+返回值 | 类型 | 描述
+------ | ---- | ----
+`<mount>` | userdata `Mount` | 牌山
+
+返回的牌山是真实牌山的复制品，
+只能用来读取残枚等数据，对其干涉没有卵用。
+
 ## 获取某家牌河
 
 `local <river> = <game>:getriver(<who>)`
