@@ -225,6 +225,9 @@
             <a href="#d4c6f6b448" class="toc-h1 toc-link" data-title="回调函数">回调函数</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#617e94ebef" class="toc-h2 toc-link" data-title="转骰子前搞事情">转骰子前搞事情</a>
+                  </li>
+                  <li>
                     <a href="#3e0ca3ca66" class="toc-h2 toc-link" data-title="猴子阶段前搞事情">猴子阶段前搞事情</a>
                   </li>
                   <li>
@@ -240,6 +243,17 @@
           </li>
           <li>
             <a href="#lua" class="toc-h1 toc-link" data-title="Lua 标准库">Lua 标准库</a>
+          </li>
+          <li>
+            <a href="#rand" class="toc-h1 toc-link" data-title="随机数生成器 Rand">随机数生成器 <code>Rand</code></a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#a9ccc6316f" class="toc-h2 toc-link" data-title="生成整数">生成整数</a>
+                  </li>
+                  <li>
+                    <a href="#1490471f95" class="toc-h2 toc-link" data-title="获取生成器当前状态">获取生成器当前状态</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#t34" class="toc-h1 toc-link" data-title="麻将牌 T34">麻将牌 <code>T34</code></a>
@@ -548,6 +562,9 @@
                     <a href="#51b6e0ba39" class="toc-h2 toc-link" data-title="获取场风">获取场风</a>
                   </li>
                   <li>
+                    <a href="#df3b1e75b0" class="toc-h2 toc-link" data-title="获取牌山（只读）">获取牌山（只读）</a>
+                  </li>
+                  <li>
                     <a href="#09ccca7203" class="toc-h2 toc-link" data-title="获取某家牌河">获取某家牌河</a>
                   </li>
                   <li>
@@ -601,6 +618,65 @@
 该变量为 userdata <code>Who</code> 类型，代表当前 Lua 文件对应的自身角色。
 其它的全局变量（例如<code>game</code>, <code>who</code>, <code>mount</code>等）只在特定的回调函数中可用，
 下面的文档中有详细说明。</p>
+
+<blockquote>
+<p>请勿通过任何绕弯的手段调用不属于当前回调函数的全局变量。
+例如：</p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="c1">-- 错误示范</span>
+
+<span class="k">function</span> <span class="nf">ondice</span><span class="p">()</span>
+  <span class="n">rand_copy</span> <span class="o">=</span> <span class="n">rand</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">ondraw</span><span class="p">()</span>
+  <span class="kd">local</span> <span class="n">num</span> <span class="o">=</span> <span class="n">rand_copy</span><span class="p">:</span><span class="n">gen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+<blockquote>
+<p><code>ondraw</code>的可用全局变量里没有<code>rand</code>，
+但以上代码通过复制引用，间接地在<code>ondraw</code>中使用了<code>rand</code>。
+该代码乍一看运行正常，但违背了松饼的 API 设计，
+是存在诸多潜在 bug 的。
+将来版本的松饼可能会直接拒绝运行类似的代码。</p>
+</blockquote>
+
+<aside class="warning">
+请勿通过任何手段调用不属于当前回调函数的全局变量。（见代码样例）
+</aside>
+<h2 id='617e94ebef'>转骰子前搞事情</h2>
+<blockquote>
+<p>例：生成一个 0 ~ 9 的随机数，保存到全局变量<code>doge</code></p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="n">doge</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">function</span> <span class="nf">ondice</span><span class="p">()</span>
+  <span class="n">doge</span> <span class="o">=</span> <span class="n">rand</span><span class="p">:</span><span class="n">gen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre><h3 id='7f7f9e027f'>函数名</h3>
+<p><code>ondice</code></p>
+<h3 id='4cc58268ed'>可用全局变量</h3>
+<table><thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>game</code></td>
+<td>userdata <code>Game</code></td>
+<td>当前牌桌数据</td>
+</tr>
+<tr>
+<td><code>rand</code></td>
+<td>userdata <code>Rand</code></td>
+<td>随机数生成器</td>
+</tr>
+</tbody></table>
+<h3 id='f565dac200'>具体用法</h3>
+<p>定义<code>ondice</code>函数，即可在每局开始时转骰子之前搞事情。
+通常我们会在这个阶段初始化一些状态，或生成随机数。</p>
 <h2 id='3e0ca3ca66'>猴子阶段前搞事情</h2>
 <blockquote>
 <p>例：增加自己的配牌中摸到 1m 的概率：</p>
@@ -609,9 +685,9 @@
   <span class="kd">local</span> <span class="n">exist</span> <span class="o">=</span> <span class="n">exists</span><span class="p">[</span><span class="n">self</span><span class="p">:</span><span class="n">index</span><span class="p">()]</span>
   <span class="n">exist</span><span class="p">:</span><span class="n">incmk</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1m"</span><span class="p">),</span> <span class="mi">400</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre><h3 id='7f7f9e027f'>函数名</h3>
+</code></pre><h3 id='7f7f9e027f-2'>函数名</h3>
 <p><code>onmonkey</code></p>
-<h3 id='4cc58268ed'>可用全局变量</h3>
+<h3 id='4cc58268ed-2'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -630,7 +706,7 @@
 <td>4 个人的存在感分布</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200'>具体用法</h3>
+<h3 id='f565dac200-2'>具体用法</h3>
 <p>定义<code>onmonkey</code>函数，即可在猴子配牌阶段搞事情。
 通常我们会在这个阶段通过操作<code>exists</code>来影响配牌中各种牌出现的概率。</p>
 
@@ -679,9 +755,9 @@
   <span class="c1">-- 自家配牌，西风数为 0</span>
   <span class="k">return</span> <span class="n">init</span><span class="p">:</span><span class="n">ct</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"3f"</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
 <span class="k">end</span>
-</code></pre><h3 id='7f7f9e027f-2'>函数名</h3>
+</code></pre><h3 id='7f7f9e027f-3'>函数名</h3>
 <p><code>checkinit</code></p>
-<h3 id='4cc58268ed-2'>可用全局变量</h3>
+<h3 id='4cc58268ed-3'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -710,7 +786,7 @@
 <td>检测轮数，从0 开始递增，最大 999</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200-2'>具体用法</h3>
+<h3 id='f565dac200-3'>具体用法</h3>
 <p>猴子阶段中，发牌姬会不断地为一家生成配牌，
 直到四家都对生成的配牌表示满意。
 这个用来表示是否满意的地方，就是<code>checkinit</code>的返回值。
@@ -771,9 +847,9 @@
 
   <span class="n">mount</span><span class="p">:</span><span class="n">lighta</span><span class="p">(</span><span class="n">T34</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"1y"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre><h3 id='7f7f9e027f-3'>函数名</h3>
+</code></pre><h3 id='7f7f9e027f-4'>函数名</h3>
 <p><code>ondraw</code></p>
-<h3 id='4cc58268ed-3'>可用全局变量</h3>
+<h3 id='4cc58268ed-4'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -802,11 +878,11 @@
 <td>下一张摸牌是否为岭上牌</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200-3'>具体用法</h3>
+<h3 id='f565dac200-4'>具体用法</h3>
 <p>摸牌前被调用，可干涉牌山。</p>
-<h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-4'>函数名</h3>
+<h2 id='8a5ba50a3c'>发生事件后做处理</h2><h3 id='7f7f9e027f-5'>函数名</h3>
 <p><code>ongameevent</code></p>
-<h3 id='4cc58268ed-4'>可用全局变量</h3>
+<h3 id='4cc58268ed-5'>可用全局变量</h3>
 <table><thead>
 <tr>
 <th>变量名</th>
@@ -825,7 +901,7 @@
 <td>发生的事件</td>
 </tr>
 </tbody></table>
-<h3 id='f565dac200-4'>具体用法</h3>
+<h3 id='f565dac200-5'>具体用法</h3>
 <p><code>ongameevent</code>会在发生某些事件前调用。</p>
 
 <p><code>ongameevent</code>内不可直接干涉牌山，
@@ -850,6 +926,97 @@
 </ul>
 
 <p>将来可能会放宽限制，支持更多的标准库成员。</p>
+<h1 id='rand'>随机数生成器 <code>Rand</code></h1><h2 id='a9ccc6316f'>生成整数</h2>
+<blockquote>
+<p>例：生成一个 0 ~ 9 的随机数，保存到全局变量<code>doge</code></p>
+</blockquote>
+<pre class="highlight lua tab-lua"><code><span class="n">doge</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">function</span> <span class="nf">ondice</span><span class="p">()</span>
+  <span class="n">doge</span> <span class="o">=</span> <span class="n">rand</span><span class="p">:</span><span class="n">gen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+<p><code>local &lt;n&gt; = &lt;rand&gt;:gen(&lt;limit&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;rand&gt;</code></td>
+<td>userdata <code>Rand</code></td>
+<td>随机数生成器</td>
+</tr>
+<tr>
+<td><code>&lt;limit&gt;</code></td>
+<td>number</td>
+<td>上限，大于 0 的整数</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;n&gt;</code></td>
+<td>number</td>
+<td>一个大于等于 0，小于<code>&lt;limit&gt;</code>的整数</td>
+</tr>
+</tbody></table>
+
+<p>目前随机数只能在<code>ondice</code>中生成，
+这是因为松饼中随机数的使用是受管制的。
+这主要是为了方便所有预知类的能力的实现（不仅仅是怜的未来视）。</p>
+
+<p>牌局可以预知的前提，是技能具有「可重入」的性质。
+所谓可重入，是指输入一样时输出必然一样。
+如果（真）随机数可以在任何时间点产生，
+使用了这些随机数的技能会变得不可重入。
+一个不方便控制的伪随机算法，
+从使用的角度上看近似等同于真随机。
+因此我们禁用了可控性有限的 Lua 标准库中的<code>math.random</code>，
+并引入状态受控的伪随机生成器<code>Rand</code>。
+随着将来版本中对随机数控制机制的完善，
+松饼可能会放宽对<code>Rand</code>使用时机的限制。</p>
+<h2 id='1490471f95'>获取生成器当前状态</h2>
+<p><code>local &lt;s&gt; = &lt;rand&gt;:state()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;rand&gt;</code></td>
+<td>userdata <code>Rand</code></td>
+<td><code>Rand</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;s&gt;</code></td>
+<td>number</td>
+<td>随机数生成器当前状态</td>
+</tr>
+</tbody></table>
+
+<p>获取状态主要用于调试等特殊用途。</p>
 <h1 id='t34'>麻将牌 <code>T34</code></h1>
 <p><code>T34</code>代表一张不区分赤宝牌的麻将牌。</p>
 <h2 id='69210591e9'>通过数值与花色构造</h2>
@@ -3994,6 +4161,39 @@ B 区中某牌的个数是不允许查看的。
 <td>场风牌的数值（1～4）</td>
 </tr>
 </tbody></table>
+<h2 id='df3b1e75b0'>获取牌山（只读）</h2>
+<p><code>local &lt;mount&gt; = &lt;game&gt;:getmount()</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;game&gt;</code></td>
+<td>userdata <code>Game</code></td>
+<td><code>Game</code>对象</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;mount&gt;</code></td>
+<td>userdata <code>Mount</code></td>
+<td>牌山</td>
+</tr>
+</tbody></table>
+
+<p>返回的牌山是真实牌山的复制品，
+只能用来读取残枚等数据，对其干涉没有卵用。</p>
 <h2 id='09ccca7203'>获取某家牌河</h2>
 <p><code>local &lt;river&gt; = &lt;game&gt;:getriver(&lt;who&gt;)</code></p>
 
