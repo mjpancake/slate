@@ -81,7 +81,7 @@ B 区中某牌的个数是不允许查看的。
 
 参数 | 类型 | 描述
 ---- | ---- | ----
-`<mount>` | userdata `Mount` | `Mount`对象
+`<mount>` | userdata `Mount`，非只读 | `Mount`对象
 `<t>` | userdata `T34` 或 `T37` | 要改变存在感的牌
 `<mk>` | number | 存在感变化量
 `<rinshan>` | boolean 或 nil | 选择影响岭上牌还是壁牌
@@ -97,7 +97,7 @@ B 区中某牌的个数是不允许查看的。
 
 参数 | 类型 | 描述
 ---- | ---- | ----
-`<mount>` | userdata `Mount` | `Mount`对象
+`<mount>` | userdata `Mount`，非只读 | `Mount`对象
 `<t>` | userdata `T34` 或 `T37` | 要改变存在感的牌
 `<mk>` | number | 存在感变化量
 `<rinshan>` | boolean 或 nil | 选择影响岭上牌还是壁牌
@@ -113,7 +113,7 @@ B 区中某牌的个数是不允许查看的。
 
 参数 | 类型 | 描述
 ---- | ---- | ----
-`<mount>` | userdata `Mount` | `Mount`对象
+`<mount>` | userdata `Mount`，非只读 | `Mount`对象
 `<exit>` | string | 影响的出口（见下文说明）
 `<t>` | userdata `T34` 或 `T37` | 要改变存在感的牌
 `<mk>` | number | 存在感变化量
@@ -135,7 +135,7 @@ B 区中某牌的个数是不允许查看的。
 
 参数 | 类型 | 描述
 ---- | ---- | ----
-`<mount>` | userdata `Mount` | `Mount`对象
+`<mount>` | userdata `Mount`，非只读 | `Mount`对象
 `<t>` | userdata `T37` | 要放入 B 区的牌
 `<num>` | number | 放入数量
 
