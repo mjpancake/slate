@@ -222,6 +222,9 @@
             <a href="#5060421d15" class="toc-h1 toc-link" data-title="概览">概览</a>
           </li>
           <li>
+            <a href="#06738fd503" class="toc-h1 toc-link" data-title="关于「只读」属性">关于「只读」属性</a>
+          </li>
+          <li>
             <a href="#d4c6f6b448" class="toc-h1 toc-link" data-title="回调函数">回调函数</a>
               <ul class="toc-list-h2">
                   <li>
@@ -421,6 +424,9 @@
             <a href="#hand" class="toc-h1 toc-link" data-title="手牌 Hand">手牌 <code>Hand</code></a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#c94a63094d" class="toc-h2 toc-link" data-title="复制构造">复制构造</a>
+                  </li>
+                  <li>
                     <a href="#dce6041f8a" class="toc-h2 toc-link" data-title="获取纯手牌">获取纯手牌</a>
                   </li>
                   <li>
@@ -461,14 +467,6 @@
                   </li>
                   <li>
                     <a href="#ef9f05431e" class="toc-h2 toc-link" data-title="宝牌计数">宝牌计数</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#dreamhand" class="toc-h1 toc-link" data-title="梦中手牌 Dreamhand">梦中手牌 <code>Dreamhand</code></a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#hand" class="toc-h2 toc-link" data-title="从Hand复制">从<code>Hand</code>复制</a>
                   </li>
                   <li>
                     <a href="#0c8a6e0604" class="toc-h2 toc-link" data-title="摸牌">摸牌</a>
@@ -562,7 +560,7 @@
                     <a href="#51b6e0ba39" class="toc-h2 toc-link" data-title="获取场风">获取场风</a>
                   </li>
                   <li>
-                    <a href="#df3b1e75b0" class="toc-h2 toc-link" data-title="获取牌山（只读）">获取牌山（只读）</a>
+                    <a href="#ccf41ef863" class="toc-h2 toc-link" data-title="获取牌山">获取牌山</a>
                   </li>
                   <li>
                     <a href="#09ccca7203" class="toc-h2 toc-link" data-title="获取某家牌河">获取某家牌河</a>
@@ -609,6 +607,14 @@
 <a href="https://mjpancake.github.io/docs/libsaki/">Libsaki 代码导读</a>
 中查到。那个代码导读是针对 C++ 的，但基本的设计与 Lua 相通。
 大多数术语都定义在其中的「牌山系统」和「发牌姬」两个章节。</p>
+<h1 id='06738fd503'>关于「只读」属性</h1>
+<p>松饼为 Lua 的 userdata 添加了「只读」的概念。
+以下文档中，如果一个 userdata 变量注有「只读」字样，
+那么就无法通过该变量调用标有「非只读」的方法。</p>
+
+<p>例如<code>game:getmount():lighta(T34.new(&quot;1m&quot;), 100)</code>就无法执行，
+因为<code>game:getmount()</code>的返回值是只读的，
+无法调用其非只读方法<code>lighta</code>。</p>
 <h1 id='d4c6f6b448'>回调函数</h1>
 <p>在 Lua 脚本文件中，以特定的名称定义函数，即可在特定的时机插入自己的逻辑。
 这些函数都不需要参数，
@@ -636,9 +642,7 @@
 <blockquote>
 <p><code>ondraw</code>的可用全局变量里没有<code>rand</code>，
 但以上代码通过复制引用，间接地在<code>ondraw</code>中使用了<code>rand</code>。
-该代码乍一看运行正常，但违背了松饼的 API 设计，
-是存在诸多潜在 bug 的。
-将来版本的松饼可能会直接拒绝运行类似的代码。</p>
+该代码无法正常执行，会在运行时报错。</p>
 </blockquote>
 
 <aside class="warning">
@@ -772,7 +776,7 @@
 </tr>
 <tr>
 <td><code>init</code></td>
-<td>userdata <code>Hand</code></td>
+<td>userdata <code>Hand</code>，只读</td>
 <td>待测配牌，无论亲子都是 13 张</td>
 </tr>
 <tr>
@@ -2290,7 +2294,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;mount&gt;</code></td>
-<td>userdata <code>Mount</code></td>
+<td>userdata <code>Mount</code>，非只读</td>
 <td><code>Mount</code>对象</td>
 </tr>
 <tr>
@@ -2326,7 +2330,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;mount&gt;</code></td>
-<td>userdata <code>Mount</code></td>
+<td>userdata <code>Mount</code>，非只读</td>
 <td><code>Mount</code>对象</td>
 </tr>
 <tr>
@@ -2362,7 +2366,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;mount&gt;</code></td>
-<td>userdata <code>Mount</code></td>
+<td>userdata <code>Mount</code>，非只读</td>
 <td><code>Mount</code>对象</td>
 </tr>
 <tr>
@@ -2408,7 +2412,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;mount&gt;</code></td>
-<td>userdata <code>Mount</code></td>
+<td>userdata <code>Mount</code>，非只读</td>
 <td><code>Mount</code>对象</td>
 </tr>
 <tr>
@@ -2504,6 +2508,52 @@ B 区中某牌的个数是不允许查看的。
 <p>参数<code>&lt;suit&gt;</code>须为<code>&quot;m&quot;</code>, <code>&quot;p&quot;</code>, <code>&quot;s&quot;</code>, <code>&quot;f&quot;</code>, <code>&quot;y&quot;</code>之一。</p>
 <h1 id='hand'>手牌 <code>Hand</code></h1>
 <p>本文档中「手牌」一词指包含纯手牌、自摸牌、副露、暗杠的广义手牌。</p>
+
+<p>通过<code>game:gethand(&lt;who&gt;)</code>获取的手牌代表牌桌上的真实手牌，
+具有「只读」属性，
+只能由松饼系统修改，技能代码无法干涉（否则就是作弊了）。
+如果需要修改手牌（为了计算手牌改变后的向听数等目的），
+可以通过下文中的「复制构造」方法，
+创建一份不带只读属性的假想手牌，从而调用要求<code>Hand</code>非只读的方法。</p>
+
+<p>但修改不是乱改，否则是要谢罪的。
+<code>Hand</code>应始终处于「14 - 3k 张」或「13 - 3k 张」的状态（k 代表 bark 数，范围是 0 ~ 4）。
+如果你尝试让<code>Hand</code>脱离这两种状态，代码会报错并中止运行。</p>
+
+<aside class="warning">
+<code>Hand</code>的许多方法的参数都是<code>T37</code>类型的，
+不要误传入<code>T34</code>。
+</aside>
+<h2 id='c94a63094d'>复制构造</h2>
+<p><code>local &lt;hand2&gt; = Hand.new(&lt;hand&gt;)</code></p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td>被复制的手牌</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;hand2&gt;</code></td>
+<td>userdata <code>Hand</code></td>
+<td>复制出的<code>Hand</code>对象</td>
+</tr>
+</tbody></table>
 <h2 id='dce6041f8a'>获取纯手牌</h2>
 <p><code>local &lt;closed&gt; = &lt;hand&gt;:closed()</code></p>
 
@@ -2938,27 +2988,8 @@ B 区中某牌的个数是不允许查看的。
 <td>被指示出的宝牌数</td>
 </tr>
 </tbody></table>
-<h1 id='dreamhand'>梦中手牌 <code>Dreamhand</code></h1>
-<p><code>Dreamhand</code>是<code>Hand</code>的扩展牌本，是可以修改的手牌。</p>
-
-<p><code>Hand</code>代表牌桌上的真实手牌，只能由正常的打牌操作修改，外挂技能无法干涉
-（否则就是作弊了）。
-<code>Dreamhand</code>与<code>Hand</code>不同，是一个脑中假想的手牌，因此可以随意修改。</p>
-
-<p>但修改不是乱改，否则是要谢罪的。<code>Dreamhand</code>与<code>Hand</code>相同，
-应始终处于「14 - 3k 张」或「13 - 3k 张」的状态（k 代表 bark 数，范围是 0 ~ 4）。
-如果你尝试让<code>Dreamhand</code>脱离这两种状态，代码会报错并中止运行。</p>
-
-<p><code>Dreamhand</code>是一个<code>Hand</code>。
-所有适用于<code>Hand</code>的方法（如<code>step</code>，<code>effa</code>等）也适用于<code>Dreamhand</code>。
-所有能接受<code>Hand</code>的地方也都能接受<code>Dreamhand</code>。</p>
-
-<aside class="warning">
-<code>Dreamhand</code>的方法的参数多为<code>T37</code>类型，
-不要误传入<code>T34</code>。
-</aside>
-<h2 id='hand'>从<code>Hand</code>复制</h2>
-<p><code>local &lt;dream&gt; = Dreamhand.new(&lt;hand&gt;)</code></p>
+<h2 id='0c8a6e0604'>摸牌</h2>
+<p><code>&lt;hand&gt;:draw(&lt;t37&gt;)</code></p>
 
 <table><thead>
 <tr>
@@ -2969,43 +3000,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;hand&gt;</code></td>
-<td>userdata <code>Hand</code></td>
-<td>被复制的手牌</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>返回值</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>&lt;dream&gt;</code></td>
-<td>userdata <code>Dreamhand</code></td>
-<td>创建出的<code>Dreamhand</code>对象</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-别忘了<code>Dreamhand</code>是一个<code>Hand</code>，
-能够从<code>Hand</code>复制，
-就意味着也能从<code>Dreamhand</code>复制。
-</aside>
-<h2 id='0c8a6e0604'>摸牌</h2>
-<p><code>&lt;dreamhand&gt;:draw(&lt;t37&gt;)</code></p>
-
-<table><thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>&lt;dreamhand&gt;</code></td>
-<td>userdata <code>Dreamhand</code></td>
+<td>userdata <code>Hand</code>，非只读</td>
 <td>摸牌之前的手牌</td>
 </tr>
 <tr>
@@ -3015,10 +3010,10 @@ B 区中某牌的个数是不允许查看的。
 </tr>
 </tbody></table>
 
-<p>为<code>&lt;dreamhand&gt;</code>以摸牌的方式添加一张牌。
-若<code>&lt;dreamhand&gt;</code>并非处于可摸牌的状态（比如已经摸牌，或正在鸣牌），则报错并中止程序。</p>
+<p>为<code>&lt;hand&gt;</code>以摸牌的方式添加一张牌。
+若<code>&lt;hand&gt;</code>并非处于可摸牌的状态（比如已经摸牌，或正在鸣牌），则报错并中止程序。</p>
 <h2 id='44d71cf84c'>手切</h2>
-<p><code>&lt;dreamhand&gt;:swapout(&lt;t37&gt;)</code></p>
+<p><code>&lt;hand&gt;:swapout(&lt;t37&gt;)</code></p>
 
 <table><thead>
 <tr>
@@ -3028,8 +3023,8 @@ B 区中某牌的个数是不允许查看的。
 </tr>
 </thead><tbody>
 <tr>
-<td><code>&lt;dreamhand&gt;</code></td>
-<td>userdata <code>Dreamhand</code></td>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code>，非只读</td>
 <td>切牌之前的手牌</td>
 </tr>
 <tr>
@@ -3039,16 +3034,16 @@ B 区中某牌的个数是不允许查看的。
 </tr>
 </tbody></table>
 
-<p>从<code>&lt;dreamhand&gt;</code>中，以手切的方式去掉一张牌。</p>
+<p>从<code>&lt;hand&gt;</code>中，以手切的方式去掉一张牌。</p>
 
-<p>若<code>&lt;dreamhand&gt;</code>并非处于可手切的状态，则报错并中止程序。
-若<code>&lt;dreamhand&gt;</code>的纯手牌部分不含<code>&lt;t37&gt;</code>，则报错并中止程序。</p>
+<p>若<code>&lt;hand&gt;</code>并非处于可手切的状态，则报错并中止程序。
+若<code>&lt;hand&gt;</code>的纯手牌部分不含<code>&lt;t37&gt;</code>，则报错并中止程序。</p>
 
 <aside class="warning">
 松饼严格区分手切、自摸切、鸣切。
 </aside>
 <h2 id='d8bc03eb0c'>自摸切</h2>
-<p><code>&lt;dreamhand&gt;:spinout()</code></p>
+<p><code>&lt;hand&gt;:spinout()</code></p>
 
 <table><thead>
 <tr>
@@ -3058,15 +3053,15 @@ B 区中某牌的个数是不允许查看的。
 </tr>
 </thead><tbody>
 <tr>
-<td><code>&lt;dreamhand&gt;</code></td>
-<td>userdata <code>Dreamhand</code></td>
+<td><code>&lt;hand&gt;</code></td>
+<td>userdata <code>Hand</code>，非只读</td>
 <td>切牌之前的手牌</td>
 </tr>
 </tbody></table>
 
-<p>从<code>&lt;dreamhand&gt;</code>中，以自摸切的方式去掉一张牌。</p>
+<p>从<code>&lt;hand&gt;</code>中，以自摸切的方式去掉一张牌。</p>
 
-<p>若<code>&lt;dreamhand&gt;</code>并非处于可自摸切的状态，则报错并中止程序。</p>
+<p>若<code>&lt;hand&gt;</code>并非处于可自摸切的状态，则报错并中止程序。</p>
 
 <aside class="warning">
 松饼严格区分手切、自摸切、鸣切。
@@ -4000,7 +3995,7 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;hand&gt;</code></td>
-<td>userdata <code>Hand</code></td>
+<td>userdata <code>Hand</code>，只读</td>
 <td>手牌</td>
 </tr>
 </tbody></table>
@@ -4161,7 +4156,7 @@ B 区中某牌的个数是不允许查看的。
 <td>场风牌的数值（1～4）</td>
 </tr>
 </tbody></table>
-<h2 id='df3b1e75b0'>获取牌山（只读）</h2>
+<h2 id='ccf41ef863'>获取牌山</h2>
 <p><code>local &lt;mount&gt; = &lt;game&gt;:getmount()</code></p>
 
 <table><thead>
@@ -4187,13 +4182,10 @@ B 区中某牌的个数是不允许查看的。
 </thead><tbody>
 <tr>
 <td><code>&lt;mount&gt;</code></td>
-<td>userdata <code>Mount</code></td>
+<td>userdata <code>Mount</code>，只读</td>
 <td>牌山</td>
 </tr>
 </tbody></table>
-
-<p>返回的牌山是真实牌山的复制品，
-只能用来读取残枚等数据，对其干涉没有卵用。</p>
 <h2 id='09ccca7203'>获取某家牌河</h2>
 <p><code>local &lt;river&gt; = &lt;game&gt;:getriver(&lt;who&gt;)</code></p>
 
